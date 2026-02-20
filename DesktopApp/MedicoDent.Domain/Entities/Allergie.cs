@@ -11,7 +11,5 @@ namespace MedicoDent.Domain.Entities
         public int PatientId { get; set; }
         public Patient? Patient { get; set; }
 
-        public bool? HasVagina { get; set; }
-
     }
 }

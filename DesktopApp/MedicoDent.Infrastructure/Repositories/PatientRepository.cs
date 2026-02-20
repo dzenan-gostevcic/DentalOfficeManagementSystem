@@ -28,46 +28,47 @@ namespace MedicoDent.Infrastructure.Repositories
             => _db.Patients
                 .FirstOrDefaultAsync(x => x.Id == id, ct);
 
-        public async Task<PagedResult<Patient>> SearchAsync(PacijentSearchFilter filter, CancellationToken ct = default)
+        public async Task<PagedResult<Patient>> SearchAsync(
+      PacijentSearchFilter filter,
+      CancellationToken ct = default)
         {
             var page = filter.Page < 1 ? 1 : filter.Page;
             var pageSize = filter.PageSize < 1 ? 20 : filter.PageSize;
-            if (pageSize > 200) pageSize = 200; // for safety 
+            if (pageSize > 200) pageSize = 200;
 
-            IQueryable<Patient> query = _db.Patients.AsNoTracking();
+            IQueryable<Patient> query = _db.Patients
+                .AsNoTracking()
+                .Include(p => p.PatientBasicInfo)
+                .Include(p => p.PatientContact);
 
-            if (!string.IsNullOrWhiteSpace(filter.Name))
+            if (!string.IsNullOrWhiteSpace(filter.SearchTerm))
             {
-                var term = filter.Name.Trim().ToLower();
+                var term = filter.SearchTerm.Trim();
 
-                query = query.Include(p => p.PatientBasicInfo).Where(p =>
-                    (!string.IsNullOrEmpty(p.PatientBasicInfo.FirstName) && p.PatientBasicInfo.FirstName.ToLower().Contains(term)) ||
-                    (!string.IsNullOrEmpty(p.PatientBasicInfo.LastName) && p.PatientBasicInfo.LastName.ToLower().Contains(term))
+                query = query.Where(p =>
+                    EF.Functions.Like(p.PatientBasicInfo.FirstName, $"%{term}%") ||
+                    EF.Functions.Like(p.PatientBasicInfo.LastName, $"%{term}%") ||
+                    EF.Functions.Like(p.PatientContact.PhoneNumber, $"%{term}%")
                 );
             }
 
             var total = await query.CountAsync(ct);
 
-            query = query.
-                Include(p => p.PatientBasicInfo)
+            var items = await query
                 .OrderBy(p => p.PatientBasicInfo.LastName)
                 .ThenBy(p => p.PatientBasicInfo.FirstName)
-                .ThenBy(p => p.Id);
-
-            var items = await query
+                .ThenBy(p => p.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync(ct);
 
-            var result = new PagedResult<Patient>
+            return new PagedResult<Patient>
             {
                 Items = items,
                 TotalCount = total,
                 Page = page,
                 PageSize = pageSize
             };
-
-            return result;
         }
 
         public Task AddAsync(Patient pacijent, CancellationToken ct = default)

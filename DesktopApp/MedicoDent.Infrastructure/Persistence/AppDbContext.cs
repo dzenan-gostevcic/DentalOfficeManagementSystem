@@ -45,6 +45,8 @@ namespace MedicoDent.Infrastructure.Persistence
                       .WithMany()
                       .HasForeignKey(x => x.GroupId)
                       .OnDelete(DeleteBehavior.Cascade);
+
+                modelBuilder.Entity<Patient>().HasQueryFilter(p => !p.IsDeleted);
             });
 
             modelBuilder.Entity<PatientAllergies>(entity =>
