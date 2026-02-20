@@ -32,6 +32,7 @@
             pictureBox1 = new PictureBox();
             PatientsButton = new Button();
             NewTreatmantButton = new Button();
+            AdministrationButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             PatientsButton.BackColor = Color.FromArgb(0, 192, 0);
             PatientsButton.ForeColor = Color.White;
-            PatientsButton.Location = new Point(296, 379);
+            PatientsButton.Location = new Point(159, 379);
             PatientsButton.Name = "PatientsButton";
             PatientsButton.Size = new Size(113, 67);
             PatientsButton.TabIndex = 3;
@@ -61,18 +62,30 @@
             // 
             NewTreatmantButton.BackColor = Color.FromArgb(0, 192, 0);
             NewTreatmantButton.ForeColor = Color.White;
-            NewTreatmantButton.Location = new Point(580, 379);
+            NewTreatmantButton.Location = new Point(459, 379);
             NewTreatmantButton.Name = "NewTreatmantButton";
             NewTreatmantButton.Size = new Size(108, 67);
             NewTreatmantButton.TabIndex = 4;
             NewTreatmantButton.Text = "Novi termin";
             NewTreatmantButton.UseVisualStyleBackColor = false;
             // 
+            // AdministrationButton
+            // 
+            AdministrationButton.BackColor = Color.FromArgb(0, 192, 0);
+            AdministrationButton.ForeColor = Color.White;
+            AdministrationButton.Location = new Point(763, 379);
+            AdministrationButton.Name = "AdministrationButton";
+            AdministrationButton.Size = new Size(108, 67);
+            AdministrationButton.TabIndex = 5;
+            AdministrationButton.Text = "Administracija";
+            AdministrationButton.UseVisualStyleBackColor = false;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(994, 624);
+            Controls.Add(AdministrationButton);
             Controls.Add(NewTreatmantButton);
             Controls.Add(PatientsButton);
             Controls.Add(pictureBox1);
@@ -88,5 +101,6 @@
         private PictureBox pictureBox1;
         private Button PatientsButton;
         private Button NewTreatmantButton;
+        private Button AdministrationButton;
     }
 }

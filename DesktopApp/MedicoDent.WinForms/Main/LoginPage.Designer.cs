@@ -109,9 +109,9 @@
             PasswordLabel.Location = new Point(369, 394);
             PasswordLabel.Margin = new Padding(4, 0, 4, 0);
             PasswordLabel.Name = "PasswordLabel";
-            PasswordLabel.Size = new Size(67, 16);
+            PasswordLabel.Size = new Size(53, 16);
             PasswordLabel.TabIndex = 36;
-            PasswordLabel.Text = "Password";
+            PasswordLabel.Text = "Lozinka";
             // 
             // UsernameTxt
             // 
@@ -131,9 +131,9 @@
             UsernameLabel.Location = new Point(369, 308);
             UsernameLabel.Margin = new Padding(4, 0, 4, 0);
             UsernameLabel.Name = "UsernameLabel";
-            UsernameLabel.Size = new Size(70, 16);
+            UsernameLabel.Size = new Size(94, 16);
             UsernameLabel.TabIndex = 34;
-            UsernameLabel.Text = "Username";
+            UsernameLabel.Text = "Korisničko ime";
             // 
             // LoginPage
             // 

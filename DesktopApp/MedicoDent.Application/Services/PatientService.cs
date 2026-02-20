@@ -43,7 +43,7 @@ namespace MedicoDent.Application.Services
             };
         }
 
-        public async Task<int> CreateAsync(PacijentDto dto, CancellationToken ct = default)
+        public async Task<int> CreateAsync(CreatePacijentDto dto, CancellationToken ct = default)
         {
             var entity = _mapper.Map<Patient>(dto);
 
@@ -53,7 +53,7 @@ namespace MedicoDent.Application.Services
             return entity.Id;
         }
 
-        public async Task<bool> UpdateAsync(PacijentDto dto, CancellationToken ct = default)
+        public async Task<bool> UpdateAsync(UpdatePacijentDto dto, CancellationToken ct = default)
         {
             var entity = await _repo.GetByIdAsync(dto.Id, ct);
             if (entity is null) return false;
@@ -70,7 +70,9 @@ namespace MedicoDent.Application.Services
             var entity = await _repo.GetByIdAsync(id, ct);
             if (entity is null) return false;
 
-            _repo.Remove(entity);
+            entity.IsDeleted = true;
+            entity.DeleteDate = DateTime.UtcNow;
+            _repo.Update(entity);
             await _repo.SaveChangesAsync(ct);
             return true;
         }

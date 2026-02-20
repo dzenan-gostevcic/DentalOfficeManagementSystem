@@ -19,5 +19,7 @@ namespace MedicoDent.Domain.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeleteDate { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
     }
 }
