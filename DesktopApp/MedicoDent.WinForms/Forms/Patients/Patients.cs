@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MedicoDent.WinForms.Forms.Patients
 {
-
+  
     public partial class Patients : Form
     {
         private readonly PatientService _patientService;
@@ -21,8 +21,59 @@ namespace MedicoDent.WinForms.Forms.Patients
         public Patients(PatientService patienteservice)
         {
             InitializeComponent();
+
             _patientService = patienteservice;
+            dgvPatients.AutoGenerateColumns = false;
+            SetupCollumns();
         }
+        
+        private void SetupCollumns()
+        {
+            dgvPatients.Columns.Clear();
+
+            dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Id",
+                HeaderText = "ID",
+                DataPropertyName = "Id"
+            });
+
+            dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "FirstName",
+                HeaderText = "First Name",
+                DataPropertyName = "PatientBasicInfo.FirstName"
+            });
+
+            dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "LastName",
+                HeaderText = "Last Name",
+                DataPropertyName = "PatientBasicInfo.LastName"
+            });
+
+            dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Phone",
+                HeaderText = "Phone",
+                DataPropertyName = "PatientContact.PhoneNumber"
+            });
+
+            dgvPatients.Columns.Add(new DataGridViewCheckBoxColumn
+            {
+                Name = "HasAllergie",
+                HeaderText = "Has Allergie",
+                DataPropertyName = "HasAllergie"
+            });
+
+            dgvPatients.Columns.Add(new DataGridViewCheckBoxColumn
+            {
+                Name = "IsOnBlackList",
+                HeaderText = "Blacklisted",
+                DataPropertyName = "IsOnBlackList"
+            });
+        }
+
         private async Task LoadPatientsAsync()
         {
             var filter = new PacijentSearchFilter
@@ -35,6 +86,7 @@ namespace MedicoDent.WinForms.Forms.Patients
             var result = await _patientService.SearchAsync(filter);
 
             dgvPatients.DataSource = result.Items;
+            txtPageNumber.Text = _currentPage.ToString();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -76,6 +128,21 @@ namespace MedicoDent.WinForms.Forms.Patients
                 await LoadPatientsAsync();
             }
         }
+
+        private async void  bttnPrevious_Click(object sender, EventArgs e)
+        {
+            if (_currentPage > 1)
+            {
+                _currentPage--;
+                await LoadPatientsAsync();
+            }
+        }
+
+        private async void bttnNext_Click(object sender, EventArgs e)
+        {
+            _currentPage++;
+            await LoadPatientsAsync();
+        }
     }
 }
-}
+

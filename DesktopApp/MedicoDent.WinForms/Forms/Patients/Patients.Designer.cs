@@ -34,11 +34,20 @@
             dgvPatients = new DataGridView();
             colID = new DataGridViewTextBoxColumn();
             ColFullName = new DataGridViewTextBoxColumn();
+            LastName = new DataGridViewTextBoxColumn();
             ColPhone = new DataGridViewTextBoxColumn();
+            Blacklist = new DataGridViewCheckBoxColumn();
+            Allergy = new DataGridViewCheckBoxColumn();
+            CreatedDate = new DataGridViewTextBoxColumn();
+            DateModified = new DataGridViewTextBoxColumn();
             button3 = new Button();
             btnDelete = new Button();
             button5 = new Button();
             button6 = new Button();
+            comboBox1 = new ComboBox();
+            txtPageNumber = new TextBox();
+            bttnNext = new Button();
+            bttnPrevious = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPatients).BeginInit();
             SuspendLayout();
             // 
@@ -76,11 +85,11 @@
             // dgvPatients
             // 
             dgvPatients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, ColPhone });
-            dgvPatients.Location = new Point(212, 120);
+            dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, LastName, ColPhone, Blacklist, Allergy, CreatedDate, DateModified });
+            dgvPatients.Location = new Point(49, 120);
             dgvPatients.Name = "dgvPatients";
             dgvPatients.RowHeadersWidth = 51;
-            dgvPatients.Size = new Size(457, 188);
+            dgvPatients.Size = new Size(818, 278);
             dgvPatients.TabIndex = 3;
             dgvPatients.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -91,23 +100,63 @@
             colID.MinimumWidth = 6;
             colID.Name = "colID";
             colID.Visible = false;
-            colID.Width = 125;
+            colID.Width = 50;
             // 
             // ColFullName
             // 
-            ColFullName.DataPropertyName = "FullName";
-            ColFullName.HeaderText = "Full Name";
+            ColFullName.DataPropertyName = "PatientBasicInfoFirstName.FirstName";
+            ColFullName.HeaderText = "First Name";
             ColFullName.MinimumWidth = 6;
             ColFullName.Name = "ColFullName";
-            ColFullName.Width = 200;
+            ColFullName.Width = 150;
+            // 
+            // LastName
+            // 
+            LastName.DataPropertyName = "PatientBasicInfo.LastName";
+            LastName.HeaderText = "Last Name";
+            LastName.MinimumWidth = 6;
+            LastName.Name = "LastName";
+            LastName.Width = 150;
             // 
             // ColPhone
             // 
-            ColPhone.DataPropertyName = "Phone";
-            ColPhone.HeaderText = "Full Name";
+            ColPhone.DataPropertyName = "PatientBasicInfo.PhoneNumber";
+            ColPhone.HeaderText = "Phone";
             ColPhone.MinimumWidth = 6;
             ColPhone.Name = "ColPhone";
-            ColPhone.Width = 150;
+            ColPhone.Width = 120;
+            // 
+            // Blacklist
+            // 
+            Blacklist.DataPropertyName = "IsOnBlackList = \"IsOnBlackList\"";
+            Blacklist.HeaderText = "Blacklist";
+            Blacklist.MinimumWidth = 6;
+            Blacklist.Name = "Blacklist";
+            Blacklist.Width = 80;
+            // 
+            // Allergy
+            // 
+            Allergy.DataPropertyName = "HasAllergie=\"HasAllergie\"";
+            Allergy.HeaderText = "Allergy";
+            Allergy.MinimumWidth = 6;
+            Allergy.Name = "Allergy";
+            Allergy.Width = 80;
+            // 
+            // CreatedDate
+            // 
+            CreatedDate.DataPropertyName = "CreatedDate";
+            CreatedDate.HeaderText = "Date-Created";
+            CreatedDate.MinimumWidth = 6;
+            CreatedDate.Name = "CreatedDate";
+            CreatedDate.Width = 120;
+            // 
+            // DateModified
+            // 
+            DateModified.DataPropertyName = "ModifiedDate";
+            DateModified.HeaderText = "Date-Modified";
+            DateModified.MinimumWidth = 6;
+            DateModified.Name = "DateModified";
+            DateModified.Width = 120;
             // 
             // button3
             // 
@@ -120,7 +169,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(278, 434);
+            btnDelete.Location = new Point(270, 475);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 5;
@@ -130,7 +179,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(443, 441);
+            button5.Location = new Point(486, 475);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
             button5.TabIndex = 6;
@@ -146,11 +195,52 @@
             button6.Text = "bttnRefresh";
             button6.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(386, 404);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 8;
+            // 
+            // txtPageNumber
+            // 
+            txtPageNumber.Location = new Point(326, 404);
+            txtPageNumber.Name = "txtPageNumber";
+            txtPageNumber.ReadOnly = true;
+            txtPageNumber.Size = new Size(38, 27);
+            txtPageNumber.TabIndex = 9;
+            txtPageNumber.Text = "Page Number";
+            // 
+            // bttnNext
+            // 
+            bttnNext.Location = new Point(585, 416);
+            bttnNext.Name = "bttnNext";
+            bttnNext.Size = new Size(94, 29);
+            bttnNext.TabIndex = 10;
+            bttnNext.Text = "Next >>";
+            bttnNext.UseVisualStyleBackColor = true;
+            bttnNext.Click += bttnNext_Click;
+            // 
+            // bttnPrevious
+            // 
+            bttnPrevious.Location = new Point(773, 416);
+            bttnPrevious.Name = "bttnPrevious";
+            bttnPrevious.Size = new Size(94, 29);
+            bttnPrevious.TabIndex = 11;
+            bttnPrevious.Text = "<< Previous";
+            bttnPrevious.UseVisualStyleBackColor = true;
+            bttnPrevious.Click += bttnPrevious_Click;
+            // 
             // Patients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(bttnPrevious);
+            Controls.Add(bttnNext);
+            Controls.Add(txtPageNumber);
+            Controls.Add(comboBox1);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(btnDelete);
@@ -178,8 +268,17 @@
         private Button btnDelete;
         private Button button5;
         private Button button6;
+        private ComboBox comboBox1;
+        private TextBox txtPageNumber;
+        private Button bttnNext;
+        private Button bttnPrevious;
         private DataGridViewTextBoxColumn colID;
         private DataGridViewTextBoxColumn ColFullName;
+        private DataGridViewTextBoxColumn LastName;
         private DataGridViewTextBoxColumn ColPhone;
+        private DataGridViewCheckBoxColumn Blacklist;
+        private DataGridViewCheckBoxColumn Allergy;
+        private DataGridViewTextBoxColumn CreatedDate;
+        private DataGridViewTextBoxColumn DateModified;
     }
 }
