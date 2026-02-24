@@ -14,6 +14,7 @@ namespace MedicoDent.Application.DependencyInjection
             // Application services
             services.AddScoped<PatientService>();
             services.AddScoped<UserService>();
+            
 
             return services;
         }

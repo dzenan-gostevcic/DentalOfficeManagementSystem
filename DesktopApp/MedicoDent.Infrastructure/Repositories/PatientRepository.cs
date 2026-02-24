@@ -40,6 +40,7 @@ namespace MedicoDent.Infrastructure.Repositories
                 .AsNoTracking()
                 .Include(p => p.PatientBasicInfo)
                 .Include(p => p.PatientContact);
+            filter.SearchTerm = "guzica";
 
             if (!string.IsNullOrWhiteSpace(filter.SearchTerm))
             {

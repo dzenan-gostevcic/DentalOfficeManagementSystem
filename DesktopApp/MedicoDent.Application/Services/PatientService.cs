@@ -7,11 +7,12 @@ using MedicoDent.Domain.Entities;
 
 namespace MedicoDent.Application.Services
 {
+
     public class PatientService
     {
         private readonly IPacijentRepository _repo;
         private readonly IMapper _mapper;
-
+      
         public PatientService(IPacijentRepository repo, IMapper mapper)
         {
             _repo = repo;

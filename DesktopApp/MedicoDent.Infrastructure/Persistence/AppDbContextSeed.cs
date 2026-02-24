@@ -49,6 +49,36 @@ namespace MedicoDent.Infrastructure.Persistence
                     PasswordHash = GenerateHash(Salt[0], "Medico123."),
                 }      
             );
+            modelBuilder.Entity<Patient>().HasData
+           (
+               new Patient
+               {
+                   Id = 1,
+                   
+               }
+           );
+            modelBuilder.Entity<PatientBasicInfo>().HasData
+(
+   new PatientBasicInfo
+   {
+       Id = 1,
+       FirstName = "Guzica",
+       LastName = "Doe",
+       BirthDate = new DateTime(1999, 1, 1),
+       PatientId = 1
+
+   }
+);
+            modelBuilder.Entity<PatientContact>().HasData
+(
+new PatientContact
+{
+   Id = 1,
+  
+   PatientId = 1
+
+}
+);
         }
     }
 }

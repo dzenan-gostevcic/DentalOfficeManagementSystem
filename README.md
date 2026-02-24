@@ -1,1 +1,1 @@
-# DentalOfficeManagementSystem
+# MedicoDent
