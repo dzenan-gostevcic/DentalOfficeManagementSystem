@@ -1,1 +1,1 @@
-# MedicoDent
+# Denta lOffice Management System
