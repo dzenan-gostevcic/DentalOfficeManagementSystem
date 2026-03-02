@@ -10,7 +10,7 @@ namespace MedicoDent.Domain.Entities
         public PatientBasicInfo? PatientBasicInfo { get; set; }
         public PatientContact? PatientContact {  get; set; }
 
-        public bool IsOnBlackList { get; set; }
+        public bool IsBlackListed { get; set; }
         public bool HasAllergie { get; set; }
 
         public List<PatientGroups>? PatientGroups { get; set; }

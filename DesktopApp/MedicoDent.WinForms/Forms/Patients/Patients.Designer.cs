@@ -40,11 +40,11 @@
             Allergy = new DataGridViewCheckBoxColumn();
             CreatedDate = new DataGridViewTextBoxColumn();
             DateModified = new DataGridViewTextBoxColumn();
-            button3 = new Button();
+            bttnadd = new Button();
             btnDelete = new Button();
             button5 = new Button();
             button6 = new Button();
-            comboBox1 = new ComboBox();
+            PageNumber = new ComboBox();
             txtPageNumber = new TextBox();
             bttnNext = new Button();
             bttnPrevious = new Button();
@@ -56,9 +56,9 @@
             txtSearch.BackColor = Color.LawnGreen;
             txtSearch.Location = new Point(571, 23);
             txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Pretraga";
             txtSearch.Size = new Size(125, 27);
             txtSearch.TabIndex = 0;
-            txtSearch.Text = "Search";
             txtSearch.TextAlign = HorizontalAlignment.Center;
             txtSearch.TextChanged += textBox1_TextChanged;
             // 
@@ -89,7 +89,7 @@
             dgvPatients.Location = new Point(49, 120);
             dgvPatients.Name = "dgvPatients";
             dgvPatients.RowHeadersWidth = 51;
-            dgvPatients.Size = new Size(818, 278);
+            dgvPatients.Size = new Size(818, 277);
             dgvPatients.TabIndex = 3;
             dgvPatients.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -104,7 +104,7 @@
             // 
             // ColFullName
             // 
-            ColFullName.DataPropertyName = "PatientBasicInfoFirstName.FirstName";
+            ColFullName.DataPropertyName = "FirstName";
             ColFullName.HeaderText = "First Name";
             ColFullName.MinimumWidth = 6;
             ColFullName.Name = "ColFullName";
@@ -112,7 +112,7 @@
             // 
             // LastName
             // 
-            LastName.DataPropertyName = "PatientBasicInfo.LastName";
+            LastName.DataPropertyName = "LastName";
             LastName.HeaderText = "Last Name";
             LastName.MinimumWidth = 6;
             LastName.Name = "LastName";
@@ -120,7 +120,7 @@
             // 
             // ColPhone
             // 
-            ColPhone.DataPropertyName = "PatientBasicInfo.PhoneNumber";
+            ColPhone.DataPropertyName = "Phone";
             ColPhone.HeaderText = "Phone";
             ColPhone.MinimumWidth = 6;
             ColPhone.Name = "ColPhone";
@@ -158,14 +158,15 @@
             DateModified.Name = "DateModified";
             DateModified.Width = 120;
             // 
-            // button3
+            // bttnadd
             // 
-            button3.Location = new Point(135, 426);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 4;
-            button3.Text = "bttnAdd";
-            button3.UseVisualStyleBackColor = true;
+            bttnadd.Location = new Point(135, 427);
+            bttnadd.Name = "bttnadd";
+            bttnadd.Size = new Size(94, 29);
+            bttnadd.TabIndex = 4;
+            bttnadd.Text = "bttnAdd";
+            bttnadd.UseVisualStyleBackColor = true;
+            bttnadd.Click += btnAdd;
             // 
             // btnDelete
             // 
@@ -185,23 +186,24 @@
             button5.TabIndex = 6;
             button5.Text = "bttnEdit";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += btnEdit;
             // 
             // button6
             // 
-            button6.Location = new Point(644, 447);
+            button6.Location = new Point(645, 447);
             button6.Name = "button6";
             button6.Size = new Size(94, 29);
             button6.TabIndex = 7;
             button6.Text = "bttnRefresh";
             button6.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // PageNumber
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(386, 404);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 8;
+            PageNumber.FormattingEnabled = true;
+            PageNumber.Location = new Point(386, 404);
+            PageNumber.Name = "PageNumber";
+            PageNumber.Size = new Size(151, 28);
+            PageNumber.TabIndex = 8;
             // 
             // txtPageNumber
             // 
@@ -211,6 +213,7 @@
             txtPageNumber.Size = new Size(38, 27);
             txtPageNumber.TabIndex = 9;
             txtPageNumber.Text = "Page Number";
+            txtPageNumber.TextChanged += txtPageNumber_TextChanged;
             // 
             // bttnNext
             // 
@@ -240,11 +243,11 @@
             Controls.Add(bttnPrevious);
             Controls.Add(bttnNext);
             Controls.Add(txtPageNumber);
-            Controls.Add(comboBox1);
+            Controls.Add(PageNumber);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(btnDelete);
-            Controls.Add(button3);
+            Controls.Add(bttnadd);
             Controls.Add(dgvPatients);
             Controls.Add(button2);
             Controls.Add(btnSearch);
@@ -264,11 +267,11 @@
         private Button btnSearch;
         private Button button2;
         private DataGridView dgvPatients;
-        private Button button3;
+        private Button bttnadd;
         private Button btnDelete;
         private Button button5;
         private Button button6;
-        private ComboBox comboBox1;
+        private ComboBox PageNumber;
         private TextBox txtPageNumber;
         private Button bttnNext;
         private Button bttnPrevious;

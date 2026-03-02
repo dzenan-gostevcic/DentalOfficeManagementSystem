@@ -1,32 +1,25 @@
 ﻿using MedicoDent.Application.Filters;
 using MedicoDent.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MedicoDent.WinForms.Forms.Patients
 {
-  
     public partial class Patients : Form
     {
         private readonly PatientService _patientService;
         private int _currentPage = 1;
-        private const int PageSize = 20;
+        private int _totalPages = 1;
+        private const int PageSize = 5;
+
+
         public Patients(PatientService patienteservice)
         {
             InitializeComponent();
-
+            this.ActiveControl = null;
             _patientService = patienteservice;
             dgvPatients.AutoGenerateColumns = false;
             SetupCollumns();
         }
-        
+
         private void SetupCollumns()
         {
             dgvPatients.Columns.Clear();
@@ -42,21 +35,21 @@ namespace MedicoDent.WinForms.Forms.Patients
             {
                 Name = "FirstName",
                 HeaderText = "First Name",
-                DataPropertyName = "PatientBasicInfo.FirstName"
+                DataPropertyName = "FirstName"
             });
 
             dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "LastName",
                 HeaderText = "Last Name",
-                DataPropertyName = "PatientBasicInfo.LastName"
+                DataPropertyName = "LastName"
             });
 
             dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Phone",
                 HeaderText = "Phone",
-                DataPropertyName = "PatientContact.PhoneNumber"
+                DataPropertyName = "Phone"
             });
 
             dgvPatients.Columns.Add(new DataGridViewCheckBoxColumn
@@ -86,7 +79,18 @@ namespace MedicoDent.WinForms.Forms.Patients
             var result = await _patientService.SearchAsync(filter);
 
             dgvPatients.DataSource = result.Items;
-            txtPageNumber.Text = _currentPage.ToString();
+
+            _totalPages = (int)Math.Ceiling((double)result.TotalCount / PageSize);
+
+            if (_totalPages == 0)
+                _totalPages = 1;
+
+
+            txtPageNumber.Text = $"{_currentPage} / {_totalPages}";
+
+
+            bttnPrevious.Enabled = _currentPage > 1;
+            bttnNext.Enabled = _currentPage < _totalPages;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -129,7 +133,7 @@ namespace MedicoDent.WinForms.Forms.Patients
             }
         }
 
-        private async void  bttnPrevious_Click(object sender, EventArgs e)
+        private async void bttnPrevious_Click(object sender, EventArgs e)
         {
             if (_currentPage > 1)
             {
@@ -140,8 +144,38 @@ namespace MedicoDent.WinForms.Forms.Patients
 
         private async void bttnNext_Click(object sender, EventArgs e)
         {
-            _currentPage++;
-            await LoadPatientsAsync();
+            if (_currentPage < _totalPages)
+            {
+                _currentPage++;
+                await LoadPatientsAsync();
+            }
+        }
+
+        private void txtPageNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd(object sender, EventArgs e)
+        {
+            var form = new PatientDetailForm(_patientService); // We'll create this form next
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _currentPage = 1; // refresh to first page
+                _ = LoadPatientsAsync();
+            }
+        }
+
+        private async void btnEdit(object sender, EventArgs e)
+        {
+            if (dgvPatients.CurrentRow == null) return;
+
+            var id = (int)dgvPatients.CurrentRow.Cells["Id"].Value;
+            var form = new PatientDetailForm(_patientService, id); // Edit mode
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _ = LoadPatientsAsync();
+            }
         }
     }
 }

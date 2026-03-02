@@ -3,6 +3,7 @@ using System;
 using MedicoDent.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicoDent.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260301233811_Added_IsBlacklisted")]
+    partial class Added_IsBlacklisted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.23");
@@ -112,86 +115,6 @@ namespace MedicoDent.Infrastructure.Migrations
                             HasAllergie = false,
                             IsBlackListed = false,
                             IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HasAllergie = false,
-                            IsBlackListed = false,
-                            IsDeleted = false
                         });
                 });
 
@@ -261,86 +184,6 @@ namespace MedicoDent.Infrastructure.Migrations
                             FirstName = "Guzica",
                             LastName = "Doe",
                             PatientId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "John",
-                            LastName = "Doe",
-                            PatientId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jane",
-                            LastName = "Doe",
-                            PatientId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jack",
-                            LastName = "Doe",
-                            PatientId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jill",
-                            LastName = "Doe",
-                            PatientId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "James",
-                            LastName = "Doe",
-                            PatientId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jenny",
-                            LastName = "Doe",
-                            PatientId = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Joe",
-                            LastName = "Doe",
-                            PatientId = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jessica",
-                            LastName = "Doe",
-                            PatientId = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jeremy",
-                            LastName = "Doe",
-                            PatientId = 10
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BirthDate = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Julia",
-                            LastName = "Doe",
-                            PatientId = 11
                         });
                 });
 
@@ -535,8 +378,8 @@ namespace MedicoDent.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PasswordHash = "dluqUehgfOdmQrSDBHELjscXZUc=",
-                            PasswordSalt = "7hvgV0k/mFAXdGLPA466aA==",
+                            PasswordHash = "H/ubzwoe3zIvKLLU/oF85DOBlls=",
+                            PasswordSalt = "jPi5dd+OuRIxOWEuFrbT9A==",
                             Username = "Admin"
                         });
                 });
