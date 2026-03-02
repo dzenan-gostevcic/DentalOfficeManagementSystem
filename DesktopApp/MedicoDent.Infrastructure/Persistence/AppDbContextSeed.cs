@@ -1,11 +1,7 @@
 ﻿using MedicoDent.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicoDent.Infrastructure.Persistence
 {
@@ -47,38 +43,162 @@ namespace MedicoDent.Infrastructure.Persistence
                     Username = "Admin",
                     PasswordSalt = Salt[0],
                     PasswordHash = GenerateHash(Salt[0], "Medico123."),
-                }      
+                }
             );
+
             modelBuilder.Entity<Patient>().HasData
-           (
+            (
                new Patient
                {
                    Id = 1,
-                   
-               }
-           );
+               },
+               new Patient
+               {
+                   Id = 2,
+               },
+                new Patient
+                {
+                    Id = 3,
+                },
+                new Patient
+                {
+                    Id = 4,
+                },
+                new Patient
+                {
+                    Id = 5,
+                },
+                new Patient
+                {
+                    Id = 6,
+                },
+                new Patient
+                {
+                    Id = 7,
+                },
+                new Patient
+                {
+                    Id = 8,
+                },
+                new Patient
+                {
+                    Id = 9,
+                },
+                new Patient
+                {
+                    Id = 10,
+                },
+                new Patient
+                {
+                    Id = 11,
+                }
+
+
+
+
+            );
+
             modelBuilder.Entity<PatientBasicInfo>().HasData
-(
-   new PatientBasicInfo
-   {
-       Id = 1,
-       FirstName = "Guzica",
-       LastName = "Doe",
-       BirthDate = new DateTime(1999, 1, 1),
-       PatientId = 1
+            (
+                new PatientBasicInfo
+                {
+                    Id = 1,
+                    FirstName = "Guzica",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 1
+                },
+                new PatientBasicInfo
+                {
+                    Id = 2,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 2
+                },
+                new PatientBasicInfo
+                {
+                    Id = 3,
+                    FirstName = "Jane",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 3
+                },
+                new PatientBasicInfo
+                {
+                    Id = 4,
+                    FirstName = "Jack",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 4
+                },
+                new PatientBasicInfo
+                {
+                    Id = 5,
+                    FirstName = "Jill",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 5
+                },
+                new PatientBasicInfo
+                {
+                    Id = 6,
+                    FirstName = "James",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 6
+                },
+                new PatientBasicInfo
+                {
+                    Id = 7,
+                    FirstName = "Jenny",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 7
+                },
+                new PatientBasicInfo
+                {
+                    Id = 8,
+                    FirstName = "Joe",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 8
+                },
+                new PatientBasicInfo
+                {
+                    Id = 9,
+                    FirstName = "Jessica",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 9
+                },
+                new PatientBasicInfo
+                {
+                    Id = 10,
+                    FirstName = "Jeremy",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 10
+                },
+                new PatientBasicInfo
+                {
+                    Id = 11,
+                    FirstName = "Julia",
+                    LastName = "Doe",
+                    BirthDate = new DateTime(1999, 1, 1),
+                    PatientId = 11
+                }
 
-   }
-);
+            );
+
             modelBuilder.Entity<PatientContact>().HasData
-(
-new PatientContact
-{
-   Id = 1,
-  
-   PatientId = 1
-
-}
-);
+            (
+                new PatientContact
+                {
+                    Id = 1,
+                    PatientId = 1
+                }
+            );
         }
     }
 }

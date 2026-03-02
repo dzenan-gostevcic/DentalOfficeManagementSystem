@@ -28,19 +28,17 @@ namespace MedicoDent.Infrastructure.Repositories
             => _db.Patients
                 .FirstOrDefaultAsync(x => x.Id == id, ct);
 
-        public async Task<PagedResult<Patient>> SearchAsync(
-      PacijentSearchFilter filter,
-      CancellationToken ct = default)
+        public async Task<PagedResult<Patient>> SearchAsync(PacijentSearchFilter filter, CancellationToken ct = default)
         {
             var page = filter.Page < 1 ? 1 : filter.Page;
             var pageSize = filter.PageSize < 1 ? 20 : filter.PageSize;
+
             if (pageSize > 200) pageSize = 200;
 
             IQueryable<Patient> query = _db.Patients
                 .AsNoTracking()
                 .Include(p => p.PatientBasicInfo)
                 .Include(p => p.PatientContact);
-            filter.SearchTerm = "guzica";
 
             if (!string.IsNullOrWhiteSpace(filter.SearchTerm))
             {

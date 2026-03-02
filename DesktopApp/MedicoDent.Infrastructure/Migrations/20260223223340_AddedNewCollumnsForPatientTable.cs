@@ -17,6 +17,7 @@ namespace MedicoDent.Infrastructure.Migrations
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: false);
+
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "CreatedDate", "DeleteDate", "HasAllergie", "IsDeleted", "IsOnBlackList", "ModifiedDate" },

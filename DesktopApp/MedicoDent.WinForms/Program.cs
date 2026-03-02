@@ -1,4 +1,5 @@
 ﻿using MedicoDent.Application.DependencyInjection;
+using MedicoDent.Domain.Entities;
 using MedicoDent.Infrastructure.DependencyInjection;
 using MedicoDent.Infrastructure.Persistence;
 using MedicoDent.WinForms.Forms.Patients;
@@ -11,7 +12,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace MedicoDent.WinForms
 {
-
     internal static class Program
     {
         [STAThread]
@@ -32,10 +32,17 @@ namespace MedicoDent.WinForms
                 {
                     services.AddServices();
                     services.AddRepositories(ctx.Configuration);
+
                     services.AddTransient<LoginPage>();
-                    services.AddServices();           
                     services.AddTransient<MainPage>();
-                    services.AddTransient<Patients>();  
+                    services.AddTransient<Patients>();
+
+                    // create MainPage with runtime User
+                    services.AddTransient<Func<User, MainPage>>(provider =>
+                        user =>
+                        {
+                            return ActivatorUtilities.CreateInstance<MainPage>(provider, user);
+                        });
                 })
                 .Build();
 
