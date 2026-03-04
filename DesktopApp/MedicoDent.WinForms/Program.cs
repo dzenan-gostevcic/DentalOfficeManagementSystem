@@ -2,6 +2,7 @@
 using MedicoDent.Domain.Entities;
 using MedicoDent.Infrastructure.DependencyInjection;
 using MedicoDent.Infrastructure.Persistence;
+using MedicoDent.WinForms.Forms;
 using MedicoDent.WinForms.Forms.Patients;
 using MedicoDent.WinForms.Main;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,7 @@ namespace MedicoDent.WinForms
                     services.AddTransient<LoginPage>();
                     services.AddTransient<MainPage>();
                     services.AddTransient<Patients>();
+                    services.AddTransient<PatientAddEdit>();
 
                     // create MainPage with runtime User
                     services.AddTransient<Func<User, MainPage>>(provider =>

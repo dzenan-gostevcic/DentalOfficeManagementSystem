@@ -44,7 +44,7 @@
             btnDelete = new Button();
             button5 = new Button();
             button6 = new Button();
-            PageNumber = new ComboBox();
+            cmbPages = new ComboBox();
             txtPageNumber = new TextBox();
             bttnNext = new Button();
             bttnPrevious = new Button();
@@ -54,10 +54,10 @@
             // txtSearch
             // 
             txtSearch.BackColor = Color.LawnGreen;
-            txtSearch.Location = new Point(571, 23);
+            txtSearch.Location = new Point(397, 298);
             txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Pretraga";
-            txtSearch.Size = new Size(125, 27);
+            txtSearch.PlaceholderText = "Filter";
+            txtSearch.Size = new Size(65, 27);
             txtSearch.TabIndex = 0;
             txtSearch.TextAlign = HorizontalAlignment.Center;
             txtSearch.TextChanged += textBox1_TextChanged;
@@ -65,31 +65,33 @@
             // btnSearch
             // 
             btnSearch.AccessibleName = "btnSearch";
-            btnSearch.Location = new Point(722, 21);
+            btnSearch.Location = new Point(285, 296);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(94, 29);
             btnSearch.TabIndex = 1;
-            btnSearch.Text = "bttnSearch";
+            btnSearch.Text = "Pretraži";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(822, 23);
+            button2.Location = new Point(486, 298);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 2;
-            button2.Text = "bttnClear";
+            button2.Text = "Očisti";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += btnClear;
             // 
             // dgvPatients
             // 
+            dgvPatients.AccessibleName = "dgvPatients";
             dgvPatients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, LastName, ColPhone, Blacklist, Allergy, CreatedDate, DateModified });
-            dgvPatients.Location = new Point(49, 120);
+            dgvPatients.Location = new Point(21, 12);
             dgvPatients.Name = "dgvPatients";
             dgvPatients.RowHeadersWidth = 51;
-            dgvPatients.Size = new Size(818, 277);
+            dgvPatients.Size = new Size(863, 277);
             dgvPatients.TabIndex = 3;
             dgvPatients.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -128,7 +130,7 @@
             // 
             // Blacklist
             // 
-            Blacklist.DataPropertyName = "IsOnBlackList = \"IsOnBlackList\"";
+            Blacklist.DataPropertyName = "IsBlackListed=\"IsBlackListed\"";
             Blacklist.HeaderText = "Blacklist";
             Blacklist.MinimumWidth = 6;
             Blacklist.Name = "Blacklist";
@@ -160,78 +162,84 @@
             // 
             // bttnadd
             // 
-            bttnadd.Location = new Point(135, 427);
+            bttnadd.Location = new Point(21, 327);
             bttnadd.Name = "bttnadd";
             bttnadd.Size = new Size(94, 29);
             bttnadd.TabIndex = 4;
-            bttnadd.Text = "bttnAdd";
+            bttnadd.Text = "Dodaj";
             bttnadd.UseVisualStyleBackColor = true;
             bttnadd.Click += btnAdd;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(270, 475);
+            btnDelete.Location = new Point(21, 419);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 5;
-            btnDelete.Text = "bttnDelete";
+            btnDelete.Text = "Izbriši";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
             // button5
             // 
-            button5.Location = new Point(486, 475);
+            button5.Location = new Point(21, 374);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
             button5.TabIndex = 6;
-            button5.Text = "bttnEdit";
+            button5.Text = "Izmjeni";
             button5.UseVisualStyleBackColor = true;
             button5.Click += btnEdit;
             // 
             // button6
             // 
-            button6.Location = new Point(645, 447);
+            button6.Location = new Point(397, 374);
             button6.Name = "button6";
-            button6.Size = new Size(94, 29);
+            button6.Size = new Size(65, 29);
             button6.TabIndex = 7;
-            button6.Text = "bttnRefresh";
+            button6.Text = "Osvježi";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += btnRefresh;
             // 
-            // PageNumber
+            // cmbPages
             // 
-            PageNumber.FormattingEnabled = true;
-            PageNumber.Location = new Point(386, 404);
-            PageNumber.Name = "PageNumber";
-            PageNumber.Size = new Size(151, 28);
-            PageNumber.TabIndex = 8;
+            cmbPages.AccessibleName = "cmbPages";
+            cmbPages.AllowDrop = true;
+            cmbPages.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPages.FormattingEnabled = true;
+            cmbPages.Location = new Point(486, 328);
+            cmbPages.MaxDropDownItems = 4;
+            cmbPages.Name = "cmbPages";
+            cmbPages.Size = new Size(36, 28);
+            cmbPages.TabIndex = 8;
+            cmbPages.SelectedIndexChanged += PageNumber_SelectedIndexChanged;
             // 
             // txtPageNumber
             // 
-            txtPageNumber.Location = new Point(326, 404);
+            txtPageNumber.Location = new Point(401, 329);
             txtPageNumber.Name = "txtPageNumber";
             txtPageNumber.ReadOnly = true;
-            txtPageNumber.Size = new Size(38, 27);
+            txtPageNumber.Size = new Size(61, 27);
             txtPageNumber.TabIndex = 9;
-            txtPageNumber.Text = "Page Number";
+            txtPageNumber.Text = "Stranica";
             txtPageNumber.TextChanged += txtPageNumber_TextChanged;
             // 
             // bttnNext
             // 
-            bttnNext.Location = new Point(585, 416);
+            bttnNext.Location = new Point(538, 329);
             bttnNext.Name = "bttnNext";
-            bttnNext.Size = new Size(94, 29);
+            bttnNext.Size = new Size(52, 32);
             bttnNext.TabIndex = 10;
-            bttnNext.Text = "Next >>";
+            bttnNext.Text = ">>";
             bttnNext.UseVisualStyleBackColor = true;
             bttnNext.Click += bttnNext_Click;
             // 
             // bttnPrevious
             // 
-            bttnPrevious.Location = new Point(773, 416);
+            bttnPrevious.Location = new Point(331, 330);
             bttnPrevious.Name = "bttnPrevious";
-            bttnPrevious.Size = new Size(94, 29);
+            bttnPrevious.Size = new Size(48, 30);
             bttnPrevious.TabIndex = 11;
-            bttnPrevious.Text = "<< Previous";
+            bttnPrevious.Text = "<<";
             bttnPrevious.UseVisualStyleBackColor = true;
             bttnPrevious.Click += bttnPrevious_Click;
             // 
@@ -243,7 +251,7 @@
             Controls.Add(bttnPrevious);
             Controls.Add(bttnNext);
             Controls.Add(txtPageNumber);
-            Controls.Add(PageNumber);
+            Controls.Add(cmbPages);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(btnDelete);
@@ -271,7 +279,7 @@
         private Button btnDelete;
         private Button button5;
         private Button button6;
-        private ComboBox PageNumber;
+        private ComboBox cmbPages;
         private TextBox txtPageNumber;
         private Button bttnNext;
         private Button bttnPrevious;

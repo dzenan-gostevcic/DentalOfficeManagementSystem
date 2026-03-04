@@ -15,6 +15,8 @@ namespace MedicoDent.WinForms
             InitializeComponent();
             _userService = userService;
             _mainPageFactory = mainPageFactory;
+
+            this.AcceptButton = LoginButton;
         }
 
         private async void Form1_Load(object sender, EventArgs e)

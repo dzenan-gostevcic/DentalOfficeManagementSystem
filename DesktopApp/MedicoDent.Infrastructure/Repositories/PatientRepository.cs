@@ -25,7 +25,9 @@ namespace MedicoDent.Infrastructure.Repositories
                 .ToListAsync(ct);
 
         public Task<Patient?> GetByIdAsync(int id, CancellationToken ct = default)
-            => _db.Patients
+            => _db.Patients.
+                Include(p => p.PatientBasicInfo)
+                .Include(p => p.PatientContact)
                 .FirstOrDefaultAsync(x => x.Id == id, ct);
 
         public async Task<PagedResult<Patient>> SearchAsync(PacijentSearchFilter filter, CancellationToken ct = default)

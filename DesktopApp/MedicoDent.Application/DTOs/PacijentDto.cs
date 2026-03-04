@@ -7,6 +7,7 @@
         public string? LastName { get; set; }
         public DateTime? BirthDate { get; set; }
         public String? Phone { get; set; }
-
+        public bool IsBlackListed { get; set; }
+        public bool HasAllergie { get; set; }
     }
 }
