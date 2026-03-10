@@ -14,5 +14,12 @@
         public string? MarriageStatus { get; set; }
         public string? Occupation { get; set; }
         public string? Workplace { get; set; }
+        public string? BirthPlace { get; set; }
+        public string? Parent { get; set; }
+        public string? SocialSecurityNumber { get; set; }
+        public string? HealthInsuranceNumber { get; set; }
+        public string? AdditionalHealthInsuranceNumber { get; set; }
+        public string? AdditionalNotes { get; set; }
+        public string? AlarmStatus { get; set; }
     }
 }

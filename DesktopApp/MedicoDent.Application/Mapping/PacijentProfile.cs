@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MedicoDent.Application.DTOs;
 using MedicoDent.Domain.Entities;
-using System.Xml.Serialization;
 
 namespace MedicoDent.Application.Mapping
 {
@@ -9,60 +8,56 @@ namespace MedicoDent.Application.Mapping
     {
         public PacijentProfile()
         {
-            
+            // -----------------------------
+            // BASIC INFO
+            // -----------------------------
+            CreateMap<PatientBasicInfo, PacijentDto>();
+            CreateMap<CreatePacijentDto, PatientBasicInfo>();
+            CreateMap<UpdatePacijentDto, PatientBasicInfo>();
+
+
+            // -----------------------------
+            // CONTACT INFO
+            // -----------------------------
+            CreateMap<PatientContact, PacijentDto>();
+            CreateMap<CreatePacijentDto, PatientContact>();
+            CreateMap<UpdatePacijentDto, PatientContact>();
+
+
+            // -----------------------------
+            // PATIENT -> DTO
+            // -----------------------------
             CreateMap<Patient, PacijentDto>()
-                .ForMember(dest => dest.FirstName,
-                    opt => opt.MapFrom(src => src.PatientBasicInfo.FirstName))
-                .ForMember(dest => dest.LastName,
-                    opt => opt.MapFrom(src => src.PatientBasicInfo.LastName))
-                .ForMember(dest => dest.Phone,
-                    opt => opt.MapFrom(src => src.PatientContact.PhoneNumber));
+                .IncludeMembers(s => s.PatientBasicInfo, s => s.PatientContact);
 
+
+            // -----------------------------
+            // PATIENT LIST ITEM
+            // -----------------------------
             CreateMap<Patient, PacijentListItemDto>()
-                .ForMember(dest => dest.FirstName,
-                    opt => opt.MapFrom(src => src.PatientBasicInfo.FirstName))
-                .ForMember(dest => dest.LastName,
-                    opt => opt.MapFrom(src => src.PatientBasicInfo.LastName))
-                .ForMember(dest => dest.Phone,
-                    opt => opt.MapFrom(src => src.PatientContact.PhoneNumber))
-                .ForMember(dest => dest.HasAllergie,
-                    opt => opt.MapFrom(src => src.HasAllergie))
-                    .ForMember(dest => dest.IsBlackListed,
-                      opt => opt.MapFrom(src => src.IsBlackListed));
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.PatientBasicInfo.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.PatientBasicInfo.LastName))
+                .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.PatientContact.PhoneNumber))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.PatientContact.Email));
+
+            // -----------------------------
+            // CREATE PATIENT
+            // -----------------------------
+            CreateMap<CreatePacijentDto, Patient>()
+                .ForMember(dest => dest.PatientBasicInfo,
+                    opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.PatientContact,
+                    opt => opt.MapFrom(src => src));
 
 
-
-            
-                CreateMap<CreatePacijentDto, Patient>()
-    .ForMember(dest => dest.HasAllergie,
-        opt => opt.MapFrom(src => src.HasAllergie))
-    .ForMember(dest => dest.IsBlackListed,
-        opt => opt.MapFrom(src => src.IsBlackListed))
-    .ForMember(dest => dest.PatientBasicInfo,
-        opt => opt.MapFrom(src => new PatientBasicInfo
-        {
-            FirstName = src.FirstName,
-            LastName = src.LastName
-        }))
-    .ForMember(dest => dest.PatientContact,
-        opt => opt.MapFrom(src => new PatientContact
-        {
-            PhoneNumber = src.Phone
-        }));
-
-
+            // -----------------------------
+            // UPDATE PATIENT
+            // -----------------------------
             CreateMap<UpdatePacijentDto, Patient>()
-                .ForMember(dest => dest.HasAllergie,
-                     opt => opt.MapFrom(src => src.HasAllergie))
-                   .ForMember(dest => dest.IsBlackListed,
-                  opt => opt.MapFrom(src => src.IsBlackListed))
-                .ForPath(dest => dest.PatientBasicInfo.FirstName,
-                    opt => opt.MapFrom(src => src.FirstName))
-                .ForPath(dest => dest.PatientBasicInfo.LastName,
-                    opt => opt.MapFrom(src => src.LastName))
-                .ForPath(dest => dest.PatientContact.PhoneNumber,
-                    opt => opt.MapFrom(src => src.Phone));
-            
+                .ForMember(dest => dest.PatientBasicInfo,
+                    opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.PatientContact,
+                    opt => opt.MapFrom(src => src));
         }
     }
 }

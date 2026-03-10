@@ -14,7 +14,7 @@ namespace MedicoDent.Infrastructure.Persistence
         public DbSet<Doctor> Doctors => Set<Doctor>();
         public DbSet<MedicoService> Services => Set<MedicoService>();
         public DbSet<PatientAllergies> PatientAllergies => Set<PatientAllergies>();
-        public DbSet<PatientGroups> PatientsGroups => Set<PatientGroups>();
+        public DbSet<PatientGroupMembership> PatientsGroups => Set<PatientGroupMembership>();
         public DbSet<PatientGroupTemplate> PatientGroupTemplates => Set<PatientGroupTemplate>();
         public DbSet<Treatment> Treatments => Set<Treatment>();
         public DbSet<TreatmentStatus> TreatmentStatuses => Set<TreatmentStatus>();
@@ -30,23 +30,19 @@ namespace MedicoDent.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<PatientGroups>(entity =>
+            modelBuilder.Entity<PatientGroupMembership>(entity =>
             {
                 entity.ToTable("PatientPatientGroups");
 
                 entity.HasKey(x => new { x.PatientId, x.GroupId });
 
                 entity.HasOne(x => x.Patient)
-                      .WithMany()
-                      .HasForeignKey(x => x.PatientId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(p => p.PatientGroupsMembership)
+                      .HasForeignKey(x => x.PatientId);
 
                 entity.HasOne(x => x.PatientGroup)
-                      .WithMany()
-                      .HasForeignKey(x => x.GroupId)
-                      .OnDelete(DeleteBehavior.Cascade);
-
-                modelBuilder.Entity<Patient>().HasQueryFilter(p => !p.IsDeleted);
+                      .WithMany(g => g.PatientGroupsMembership)
+                      .HasForeignKey(x => x.GroupId);
             });
 
             modelBuilder.Entity<PatientAllergies>(entity =>
@@ -56,16 +52,23 @@ namespace MedicoDent.Infrastructure.Persistence
                 entity.HasKey(x => new { x.PatientId, x.AllergieId });
 
                 entity.HasOne(x => x.Patient)
-                      .WithMany()
-                      .HasForeignKey(x => x.PatientId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                    .WithMany(p => p.PatientAllergies)
+                    .HasForeignKey(x => x.PatientId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(x => x.Allergie)
-                      .WithMany()
-                      .HasForeignKey(x => x.AllergieId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                    .WithMany(a => a.PatientAllergies)
+                    .HasForeignKey(x => x.AllergieId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<Patient>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<PatientAllergies>().HasQueryFilter(pa => !pa.Patient!.IsDeleted);
+            modelBuilder.Entity<PatientGroupMembership>().HasQueryFilter(pg => !pg.Patient!.IsDeleted);
+            modelBuilder.Entity<Treatment>().HasQueryFilter(t => !t.Patient!.IsDeleted);
+            modelBuilder.Entity<PatientContact>().HasQueryFilter(pc => !pc.Patient!.IsDeleted);
+            modelBuilder.Entity<PatientBasicInfo>().HasQueryFilter(pb => !pb.Patient!.IsDeleted);
+            
             OnModelCreatingPartial(modelBuilder);
         }
 

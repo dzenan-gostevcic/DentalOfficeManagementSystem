@@ -3,6 +3,7 @@ using System;
 using MedicoDent.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicoDent.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260307150718_AddedNewColumnsForPatienBasinInfoTableAndSmallFixes")]
+    partial class AddedNewColumnsForPatienBasinInfoTableAndSmallFixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.23");
@@ -402,56 +405,6 @@ namespace MedicoDent.Infrastructure.Migrations
                         {
                             Id = 1,
                             PatientId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            PatientId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            PatientId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            PatientId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            PatientId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            PatientId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            PatientId = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            PatientId = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            PatientId = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            PatientId = 10
-                        },
-                        new
-                        {
-                            Id = 11,
-                            PatientId = 11
                         });
                 });
 
@@ -591,8 +544,8 @@ namespace MedicoDent.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PasswordHash = "bwBar1xUGsj6mupNrz+0jHyeP7M=",
-                            PasswordSalt = "dEsX4qWCkjtnXnrNaHc4VQ==",
+                            PasswordHash = "N6/xo0zAawOiCOacQh1OvX6MILw=",
+                            PasswordSalt = "kHcLVXagMLDts3FXn/3vbg==",
                             Username = "Admin"
                         });
                 });

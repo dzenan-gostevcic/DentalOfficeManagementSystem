@@ -35,7 +35,6 @@ namespace MedicoDent.WinForms
                     services.AddRepositories(ctx.Configuration);
 
                     services.AddTransient<LoginPage>();
-                    services.AddTransient<MainPage>();
                     services.AddTransient<Patients>();
                     services.AddTransient<PatientAddEdit>();
 

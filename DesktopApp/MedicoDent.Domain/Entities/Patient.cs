@@ -13,8 +13,8 @@ namespace MedicoDent.Domain.Entities
         public bool IsBlackListed { get; set; }
         public bool HasAllergie { get; set; }
 
-        public List<PatientGroups>? PatientGroups { get; set; }
-        public List<Allergie>? Allergies { get; set; }
+        public ICollection<PatientGroupMembership>? PatientGroupsMembership { get; set; }
+        public ICollection<PatientAllergies>? PatientAllergies { get; set; }
 
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

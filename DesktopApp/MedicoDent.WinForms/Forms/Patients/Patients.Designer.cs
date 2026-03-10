@@ -32,14 +32,6 @@
             btnSearch = new Button();
             button2 = new Button();
             dgvPatients = new DataGridView();
-            colID = new DataGridViewTextBoxColumn();
-            ColFullName = new DataGridViewTextBoxColumn();
-            LastName = new DataGridViewTextBoxColumn();
-            ColPhone = new DataGridViewTextBoxColumn();
-            Blacklist = new DataGridViewCheckBoxColumn();
-            Allergy = new DataGridViewCheckBoxColumn();
-            CreatedDate = new DataGridViewTextBoxColumn();
-            DateModified = new DataGridViewTextBoxColumn();
             bttnadd = new Button();
             btnDelete = new Button();
             button5 = new Button();
@@ -48,16 +40,26 @@
             txtPageNumber = new TextBox();
             bttnNext = new Button();
             bttnPrevious = new Button();
+            colID = new DataGridViewTextBoxColumn();
+            ColFullName = new DataGridViewTextBoxColumn();
+            LastName = new DataGridViewTextBoxColumn();
+            ColPhone = new DataGridViewTextBoxColumn();
+            Blacklist = new DataGridViewCheckBoxColumn();
+            Allergy = new DataGridViewCheckBoxColumn();
+            CreatedDate = new DataGridViewTextBoxColumn();
+            DateModified = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvPatients).BeginInit();
             SuspendLayout();
             // 
             // txtSearch
             // 
             txtSearch.BackColor = Color.LawnGreen;
-            txtSearch.Location = new Point(397, 298);
+            txtSearch.Location = new Point(454, 397);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Filter";
-            txtSearch.Size = new Size(65, 27);
+            txtSearch.Size = new Size(74, 27);
             txtSearch.TabIndex = 0;
             txtSearch.TextAlign = HorizontalAlignment.Center;
             txtSearch.TextChanged += textBox1_TextChanged;
@@ -65,7 +67,8 @@
             // btnSearch
             // 
             btnSearch.AccessibleName = "btnSearch";
-            btnSearch.Location = new Point(285, 296);
+            btnSearch.Location = new Point(326, 395);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(94, 29);
             btnSearch.TabIndex = 1;
@@ -75,7 +78,8 @@
             // 
             // button2
             // 
-            button2.Location = new Point(486, 298);
+            button2.Location = new Point(555, 397);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 2;
@@ -86,14 +90,109 @@
             // dgvPatients
             // 
             dgvPatients.AccessibleName = "dgvPatients";
+            dgvPatients.BackgroundColor = SystemColors.Window;
             dgvPatients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, LastName, ColPhone, Blacklist, Allergy, CreatedDate, DateModified });
-            dgvPatients.Location = new Point(21, 12);
+            dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, LastName, ColPhone, Blacklist, Allergy, CreatedDate, DateModified, Email });
+            dgvPatients.GridColor = SystemColors.Desktop;
+            dgvPatients.Location = new Point(24, 16);
+            dgvPatients.Margin = new Padding(3, 4, 3, 4);
             dgvPatients.Name = "dgvPatients";
             dgvPatients.RowHeadersWidth = 51;
-            dgvPatients.Size = new Size(863, 277);
+            dgvPatients.Size = new Size(986, 369);
             dgvPatients.TabIndex = 3;
             dgvPatients.CellContentClick += dataGridView1_CellContentClick;
+            dgvPatients.CellDoubleClick += dataGridViewPatients_CellDoubleClick;
+            // 
+            // bttnadd
+            // 
+            bttnadd.Location = new Point(24, 436);
+            bttnadd.Margin = new Padding(3, 4, 3, 4);
+            bttnadd.Name = "bttnadd";
+            bttnadd.Size = new Size(94, 29);
+            bttnadd.TabIndex = 4;
+            bttnadd.Text = "Dodaj";
+            bttnadd.UseVisualStyleBackColor = true;
+            bttnadd.Click += btnAdd;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(24, 559);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 5;
+            btnDelete.Text = "Izbriši";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(24, 499);
+            button5.Margin = new Padding(3, 4, 3, 4);
+            button5.Name = "button5";
+            button5.Size = new Size(94, 29);
+            button5.TabIndex = 6;
+            button5.Text = "Izmjeni";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += btnEdit;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(454, 499);
+            button6.Margin = new Padding(3, 4, 3, 4);
+            button6.Name = "button6";
+            button6.Size = new Size(74, 39);
+            button6.TabIndex = 7;
+            button6.Text = "Osvježi";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += btnRefresh;
+            // 
+            // cmbPages
+            // 
+            cmbPages.AccessibleName = "cmbPages";
+            cmbPages.AllowDrop = true;
+            cmbPages.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPages.FormattingEnabled = true;
+            cmbPages.Location = new Point(555, 437);
+            cmbPages.Margin = new Padding(3, 4, 3, 4);
+            cmbPages.MaxDropDownItems = 4;
+            cmbPages.Name = "cmbPages";
+            cmbPages.Size = new Size(41, 28);
+            cmbPages.TabIndex = 8;
+            cmbPages.SelectedIndexChanged += PageNumber_SelectedIndexChanged;
+            // 
+            // txtPageNumber
+            // 
+            txtPageNumber.Location = new Point(458, 439);
+            txtPageNumber.Margin = new Padding(3, 4, 3, 4);
+            txtPageNumber.Name = "txtPageNumber";
+            txtPageNumber.ReadOnly = true;
+            txtPageNumber.Size = new Size(69, 27);
+            txtPageNumber.TabIndex = 9;
+            txtPageNumber.Text = "Stranica";
+            txtPageNumber.TextChanged += txtPageNumber_TextChanged;
+            // 
+            // bttnNext
+            // 
+            bttnNext.Location = new Point(615, 439);
+            bttnNext.Margin = new Padding(3, 4, 3, 4);
+            bttnNext.Name = "bttnNext";
+            bttnNext.Size = new Size(59, 43);
+            bttnNext.TabIndex = 10;
+            bttnNext.Text = ">>";
+            bttnNext.UseVisualStyleBackColor = true;
+            bttnNext.Click += bttnNext_Click;
+            // 
+            // bttnPrevious
+            // 
+            bttnPrevious.Location = new Point(378, 440);
+            bttnPrevious.Margin = new Padding(3, 4, 3, 4);
+            bttnPrevious.Name = "bttnPrevious";
+            bttnPrevious.Size = new Size(55, 40);
+            bttnPrevious.TabIndex = 11;
+            bttnPrevious.Text = "<<";
+            bttnPrevious.UseVisualStyleBackColor = true;
+            bttnPrevious.Click += bttnPrevious_Click;
             // 
             // colID
             // 
@@ -107,7 +206,7 @@
             // ColFullName
             // 
             ColFullName.DataPropertyName = "FirstName";
-            ColFullName.HeaderText = "First Name";
+            ColFullName.HeaderText = "Ime";
             ColFullName.MinimumWidth = 6;
             ColFullName.Name = "ColFullName";
             ColFullName.Width = 150;
@@ -115,7 +214,7 @@
             // LastName
             // 
             LastName.DataPropertyName = "LastName";
-            LastName.HeaderText = "Last Name";
+            LastName.HeaderText = "Prezime";
             LastName.MinimumWidth = 6;
             LastName.Name = "LastName";
             LastName.Width = 150;
@@ -123,7 +222,7 @@
             // ColPhone
             // 
             ColPhone.DataPropertyName = "Phone";
-            ColPhone.HeaderText = "Phone";
+            ColPhone.HeaderText = "Telefon";
             ColPhone.MinimumWidth = 6;
             ColPhone.Name = "ColPhone";
             ColPhone.Width = 120;
@@ -131,7 +230,7 @@
             // Blacklist
             // 
             Blacklist.DataPropertyName = "IsBlackListed=\"IsBlackListed\"";
-            Blacklist.HeaderText = "Blacklist";
+            Blacklist.HeaderText = "Crna Lista";
             Blacklist.MinimumWidth = 6;
             Blacklist.Name = "Blacklist";
             Blacklist.Width = 80;
@@ -139,7 +238,7 @@
             // Allergy
             // 
             Allergy.DataPropertyName = "HasAllergie=\"HasAllergie\"";
-            Allergy.HeaderText = "Allergy";
+            Allergy.HeaderText = "Alergija";
             Allergy.MinimumWidth = 6;
             Allergy.Name = "Allergy";
             Allergy.Width = 80;
@@ -160,94 +259,19 @@
             DateModified.Name = "DateModified";
             DateModified.Width = 120;
             // 
-            // bttnadd
+            // Email
             // 
-            bttnadd.Location = new Point(21, 327);
-            bttnadd.Name = "bttnadd";
-            bttnadd.Size = new Size(94, 29);
-            bttnadd.TabIndex = 4;
-            bttnadd.Text = "Dodaj";
-            bttnadd.UseVisualStyleBackColor = true;
-            bttnadd.Click += btnAdd;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(21, 419);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 29);
-            btnDelete.TabIndex = 5;
-            btnDelete.Text = "Izbriši";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(21, 374);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 29);
-            button5.TabIndex = 6;
-            button5.Text = "Izmjeni";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += btnEdit;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(397, 374);
-            button6.Name = "button6";
-            button6.Size = new Size(65, 29);
-            button6.TabIndex = 7;
-            button6.Text = "Osvježi";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += btnRefresh;
-            // 
-            // cmbPages
-            // 
-            cmbPages.AccessibleName = "cmbPages";
-            cmbPages.AllowDrop = true;
-            cmbPages.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbPages.FormattingEnabled = true;
-            cmbPages.Location = new Point(486, 328);
-            cmbPages.MaxDropDownItems = 4;
-            cmbPages.Name = "cmbPages";
-            cmbPages.Size = new Size(36, 28);
-            cmbPages.TabIndex = 8;
-            cmbPages.SelectedIndexChanged += PageNumber_SelectedIndexChanged;
-            // 
-            // txtPageNumber
-            // 
-            txtPageNumber.Location = new Point(401, 329);
-            txtPageNumber.Name = "txtPageNumber";
-            txtPageNumber.ReadOnly = true;
-            txtPageNumber.Size = new Size(61, 27);
-            txtPageNumber.TabIndex = 9;
-            txtPageNumber.Text = "Stranica";
-            txtPageNumber.TextChanged += txtPageNumber_TextChanged;
-            // 
-            // bttnNext
-            // 
-            bttnNext.Location = new Point(538, 329);
-            bttnNext.Name = "bttnNext";
-            bttnNext.Size = new Size(52, 32);
-            bttnNext.TabIndex = 10;
-            bttnNext.Text = ">>";
-            bttnNext.UseVisualStyleBackColor = true;
-            bttnNext.Click += bttnNext_Click;
-            // 
-            // bttnPrevious
-            // 
-            bttnPrevious.Location = new Point(331, 330);
-            bttnPrevious.Name = "bttnPrevious";
-            bttnPrevious.Size = new Size(48, 30);
-            bttnPrevious.TabIndex = 11;
-            bttnPrevious.Text = "<<";
-            bttnPrevious.UseVisualStyleBackColor = true;
-            bttnPrevious.Click += bttnPrevious_Click;
+            Email.DataPropertyName = "Email";
+            Email.HeaderText = "E-Mail";
+            Email.MinimumWidth = 6;
+            Email.Name = "Email";
+            Email.Width = 125;
             // 
             // Patients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(1039, 600);
             Controls.Add(bttnPrevious);
             Controls.Add(bttnNext);
             Controls.Add(txtPageNumber);
@@ -291,5 +315,6 @@
         private DataGridViewCheckBoxColumn Allergy;
         private DataGridViewTextBoxColumn CreatedDate;
         private DataGridViewTextBoxColumn DateModified;
+        private DataGridViewTextBoxColumn Email;
     }
 }

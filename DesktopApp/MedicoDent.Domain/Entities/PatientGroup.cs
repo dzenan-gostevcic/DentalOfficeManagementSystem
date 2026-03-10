@@ -7,7 +7,6 @@ namespace MedicoDent.Domain.Entities
         [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
-        public List<PatientGroups>? PatientGroups { get; set; }
-
+        public List<PatientGroupMembership>? PatientGroupsMembership { get; set; }
     }
 }
