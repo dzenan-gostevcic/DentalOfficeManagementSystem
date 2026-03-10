@@ -92,10 +92,6 @@ namespace MedicoDent.Infrastructure.Persistence
                 {
                     Id = 11,
                 }
-
-
-
-
             );
 
             modelBuilder.Entity<PatientBasicInfo>().HasData
@@ -197,6 +193,56 @@ namespace MedicoDent.Infrastructure.Persistence
                 {
                     Id = 1,
                     PatientId = 1
+                },
+                new PatientContact
+                {
+                    Id = 2,
+                    PatientId = 2
+                }, 
+                new PatientContact
+                {
+                    Id = 3,
+                    PatientId = 3
+                }, 
+                new PatientContact
+                {
+                    Id = 4,
+                    PatientId = 4
+                }, 
+                new PatientContact
+                {
+                    Id = 5,
+                    PatientId = 5
+                }, 
+                new PatientContact
+                {
+                    Id = 6,
+                    PatientId = 6
+                }, 
+                new PatientContact
+                {
+                    Id = 7,
+                    PatientId = 7
+                }, 
+                new PatientContact
+                {
+                    Id = 8,
+                    PatientId = 8
+                }, 
+                new PatientContact
+                {
+                    Id = 9,
+                    PatientId = 9
+                },
+                new PatientContact
+                {
+                    Id = 10,
+                    PatientId = 10
+                }
+                ,new PatientContact
+                {
+                    Id = 11,
+                    PatientId = 11
                 }
             );
         }

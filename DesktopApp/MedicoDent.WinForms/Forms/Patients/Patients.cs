@@ -10,7 +10,6 @@ namespace MedicoDent.WinForms.Forms.Patients
         private int _totalPages = 1;
         private const int PageSize = 5;
 
-
         public Patients(PatientService patienteservice)
         {
             InitializeComponent();
@@ -56,24 +55,75 @@ namespace MedicoDent.WinForms.Forms.Patients
             {
                 Name = "HasAllergie",
                 HeaderText = "Has Allergie",
-                DataPropertyName = "HasAllergie"
+                DataPropertyName = "HasAllergie",
+                ReadOnly = true
             });
 
             dgvPatients.Columns.Add(new DataGridViewCheckBoxColumn
             {
-                Name = "IsOnBlackList",
+                Name = "IsBlackListed",
                 HeaderText = "Blacklisted",
-                DataPropertyName = "IsOnBlackList"
+                DataPropertyName = "IsBlackListed",
+                ReadOnly = true
+            }
+            );
+            dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Email",
+                HeaderText = "Email",
+                DataPropertyName = "Email"
             });
-        }
 
+        }
+        private async Task LoadPage(int pageNumber)
+        {
+            _currentPage = pageNumber;
+
+            var filter = new PacijentSearchFilter
+            {
+                Page = _currentPage,
+                PageSize = PageSize,
+                SearchTerm = txtSearch.Text
+            };
+
+            var result = await _patientService.SearchAsync(filter);
+
+            dgvPatients.DataSource = result.Items;
+
+            _totalPages = (int)Math.Ceiling((double)result.TotalCount / PageSize);
+
+            if (_totalPages == 0) _totalPages = 1;
+
+            cmbPages.Items.Clear();
+            for (int i = 1; i <= _totalPages; i++)
+            {
+                cmbPages.Items.Add(i);
+            }
+
+            cmbPages.SelectedItem = _currentPage;
+
+            txtPageNumber.Text = $"{_currentPage} / {_totalPages}";
+
+            bttnPrevious.Enabled = _currentPage > 1;
+            bttnNext.Enabled = _currentPage < _totalPages;
+        }
+        private async void cmbPages_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbPages.SelectedItem != null)
+            {
+                int selectedPage = (int)cmbPages.SelectedItem;
+                await LoadPage(selectedPage);
+            }
+        }
         private async Task LoadPatientsAsync()
         {
             var filter = new PacijentSearchFilter
             {
                 SearchTerm = txtSearch.Text,
                 Page = _currentPage,
-                PageSize = PageSize
+                PageSize = PageSize,
+
+
             };
 
             var result = await _patientService.SearchAsync(filter);
@@ -158,7 +208,7 @@ namespace MedicoDent.WinForms.Forms.Patients
 
         private void btnAdd(object sender, EventArgs e)
         {
-            var form = new PatientDetailForm(_patientService); // We'll create this form next
+            var form = new PatientAddEdit(_patientService); // We'll create this form next
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _currentPage = 1; // refresh to first page
@@ -171,12 +221,42 @@ namespace MedicoDent.WinForms.Forms.Patients
             if (dgvPatients.CurrentRow == null) return;
 
             var id = (int)dgvPatients.CurrentRow.Cells["Id"].Value;
-            var form = new PatientDetailForm(_patientService, id); // Edit mode
+            //var form = new PatientAddEdit(_patientService, id); // Edit mode
+            var form = new PatientDetailForms(_patientService, id);
+
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _ = LoadPatientsAsync();
             }
         }
+
+        private async void btnClear(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            _currentPage = 1;
+
+            await LoadPatientsAsync();
+        }
+
+        private async void btnRefresh(object sender, EventArgs e)
+        {
+            await LoadPatientsAsync();
+        }
+
+        private void PageNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int totalPages = (int)Math.Ceiling((double)_totalPages / PageSize);
+        }
+
+        private async void dataGridViewPatients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedId = (int)dgvPatients
+                .Rows[e.RowIndex]
+                .Cells["Id"].Value;
+
+            var form = new PatientDetailForms(_patientService, selectedId);
+            form.ShowDialog();
+        }
     }
 }
-

@@ -3,9 +3,10 @@
     public class PacijentSearchFilter
     {
         public string? SearchTerm { get; set; }
-        public int Page { get; set; } = 1;
-        public int PageSize { get; set; } = 20;
+        public int Page { get; set; } 
+        public int PageSize { get; set; } 
 
         public int? GroupId { get; set; }
+        public int PageNumber { get; set; }
     }
 }
