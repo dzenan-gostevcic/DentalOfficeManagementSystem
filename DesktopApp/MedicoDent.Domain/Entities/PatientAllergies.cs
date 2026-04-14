@@ -6,5 +6,6 @@
         public Patient? Patient { get; set; }
         public int AllergieId { get; set; }
         public Allergie? Allergie { get; set; }
+        public string? AdditionalNote { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MedicoDent.Application.DTOs;
 using MedicoDent.Application.Services;
+using System.Text.RegularExpressions;
 
 namespace MedicoDent.WinForms.Forms
 {
@@ -22,7 +23,13 @@ namespace MedicoDent.WinForms.Forms
                 "Stomatolog",
                 "Lopov(Političar)"
          };
-
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern);
+        }
         public PatientAddEdit(PatientService patientService, int? patientId = null)
         {
             InitializeComponent();
@@ -71,10 +78,53 @@ namespace MedicoDent.WinForms.Forms
                 chkMuško.Checked = false;
             }
         }
-        private async void btnSave_Click(object sender, EventArgs e)
+
+        private bool validateForm()
         {
+            bool isValid = true;
+            errorProvider1.Clear();
+
+            //First Name
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                errorProvider1.SetError(txtFirstName, "Ime je obavezno.");
+                isValid = false;
+            }
+            //Phone
+            if (!txtPhone.Text.All(char.IsDigit))
+            {
+                errorProvider1.SetError(txtPhone, "Broj telefona mora sadržati samo brojeve");
+                isValid = false;
+            }
+
+            //Email
+
+            if (!IsValidEmail(txtEmail1.Text))
+            {
+                errorProvider1.SetError(txtEmail1, "Email nije validan.");
+                isValid = false;
+            }
+
+            //JMBG
+            if (!txtJMBG.Text.All(char.IsDigit) || txtJMBG.Text.Length != 13)
+            {
+                errorProvider1.SetError(txtJMBG, "JMBG mora sadržati 13 brojeva.");
+                isValid = false;
+            }
+            return isValid;
+
+        }
+      private async void btnSave_Click(object sender, EventArgs e)
+        {
+
+            if (!validateForm())
+            {
+                MessageBox.Show("Molimo ispravite greške prije spremanja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (_patientId.HasValue)
             {
+                
                 // Update
                 var dto = new UpdatePacijentDto
                 {
@@ -163,6 +213,14 @@ namespace MedicoDent.WinForms.Forms
             if (chkŽensko.Checked)
             {
                 chkMuško.Checked = false;
+            }
+        }
+
+        private void txtJMBG_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

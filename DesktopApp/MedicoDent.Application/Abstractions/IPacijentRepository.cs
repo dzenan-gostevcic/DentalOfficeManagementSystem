@@ -6,7 +6,6 @@ namespace MedicoDent.Application.Abstractions
 {
     public interface IPacijentRepository
     {
-
         Task<List<Patient>> GetAllAsync(CancellationToken ct = default);
         Task<Patient?> GetByIdAsync(int id, CancellationToken ct = default);    
         Task<PagedResult<Patient>> SearchAsync(PacijentSearchFilter filter, CancellationToken ct = default);
@@ -16,7 +15,5 @@ namespace MedicoDent.Application.Abstractions
         void Remove(Patient pacijent);
 
         Task SaveChangesAsync(CancellationToken ct = default);
-
-
     }
 }

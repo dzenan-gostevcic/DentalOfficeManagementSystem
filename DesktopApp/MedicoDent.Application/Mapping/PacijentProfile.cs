@@ -38,7 +38,10 @@ namespace MedicoDent.Application.Mapping
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.PatientBasicInfo.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.PatientBasicInfo.LastName))
                 .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.PatientContact.PhoneNumber))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.PatientContact.Email));
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.PatientContact.Email))
+                .ForMember(dest=> dest.BirthDate, opt=> opt.MapFrom(src => src.PatientBasicInfo.BirthDate))
+                ;
+            
 
             // -----------------------------
             // CREATE PATIENT

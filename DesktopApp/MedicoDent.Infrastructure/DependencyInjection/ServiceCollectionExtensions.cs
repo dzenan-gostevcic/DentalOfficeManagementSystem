@@ -20,6 +20,7 @@ namespace MedicoDent.Infrastructure.DependencyInjection
             // Repositories
             services.AddScoped<IPacijentRepository, PatientRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAllergieRepository, AllergieRepository>();
 
             return services;
         }
