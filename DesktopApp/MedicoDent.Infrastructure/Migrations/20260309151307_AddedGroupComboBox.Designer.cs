@@ -3,6 +3,7 @@ using System;
 using MedicoDent.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicoDent.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260309151307_AddedGroupComboBox")]
+    partial class AddedGroupComboBox
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.23");
@@ -26,21 +29,12 @@ namespace MedicoDent.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Allergies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Dijabetes"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Ostalo"
-                        });
                 });
 
             modelBuilder.Entity("MedicoDent.Domain.Entities.Doctor", b =>
@@ -207,9 +201,6 @@ namespace MedicoDent.Infrastructure.Migrations
                     b.Property<int>("AllergieId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AdditionalNote")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("PatientId", "AllergieId");
 
                     b.HasIndex("AllergieId");
@@ -224,6 +215,12 @@ namespace MedicoDent.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AdditionalHealthInsuranceNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AdditionalNotes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AlarmStatus")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("BirthDate")
@@ -600,8 +597,8 @@ namespace MedicoDent.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PasswordHash = "rmeGoutY1Bi8YzPMYbfCFfZQBiI=",
-                            PasswordSalt = "W7ciS+V/lpbHG7GjWI1mNw==",
+                            PasswordHash = "vJqZp/pZwvFqLhBBPMkr1nG0UWI=",
+                            PasswordSalt = "dsP2hOkFasWad7Gyzk20VA==",
                             Username = "Admin"
                         });
                 });

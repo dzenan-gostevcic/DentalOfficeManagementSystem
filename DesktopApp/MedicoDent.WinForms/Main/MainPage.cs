@@ -7,21 +7,20 @@ namespace MedicoDent.WinForms.Main
     public partial class MainPage : Form
     {
         private User _user;
+        private readonly Func<Patients> _patientsFactory;
 
-        private readonly PatientService _patientService;
-
-        public MainPage(User user, PatientService patientService)
+        public MainPage(User user, PatientService patientService, Func<Patients> patientsFactory)
         {
             InitializeComponent();
             _user = user;
-            _patientService = patientService;
+            _patientsFactory = patientsFactory;
         }
 
         private void PatientsButton_Click(object sender, EventArgs e)
         {
             if (_user is not null)
             {
-                var form = new Patients(_patientService);
+                var form = _patientsFactory();
                 form.Show();
             } 
         }

@@ -245,6 +245,20 @@ namespace MedicoDent.Infrastructure.Persistence
                     PatientId = 11
                 }
             );
+
+            modelBuilder.Entity<Allergie>().HasData
+            (
+                new Allergie
+                {
+                    Id = 1,
+                    Name = "Dijabetes"
+                },
+                new Allergie
+                {
+                    Id = 2,
+                    Name = "Ostalo"
+                }
+                );
         }
     }
 }

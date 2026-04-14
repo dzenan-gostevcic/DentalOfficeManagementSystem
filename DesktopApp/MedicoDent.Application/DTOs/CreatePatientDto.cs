@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace MedicoDent.Application.DTOs
+﻿namespace MedicoDent.Application.DTOs
 {
     public class CreatePacijentDto
     {
@@ -23,8 +21,6 @@ namespace MedicoDent.Application.DTOs
         public string? Parent { get; set; }
         public string? HealthInsuranceNumber { get; set; }
         public string? HealthInsuranceAdditionalNumber { get; set; }
-
-
 
         // -----------------------------
         // CONTACT INFO

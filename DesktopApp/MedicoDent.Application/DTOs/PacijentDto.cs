@@ -24,6 +24,7 @@
         public string? AdditionalHealthInsuranceNumber { get; set; }
         public string? Occupation { get; set; }
         public string? Workplace { get; set; }
+        public string? Group { get; set; }
 
         // -----------------------------
         // CONTACT INFO

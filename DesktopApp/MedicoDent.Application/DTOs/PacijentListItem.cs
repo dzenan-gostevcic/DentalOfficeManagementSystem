@@ -16,12 +16,12 @@
        public string? Street { get; set; } = "";
         public string? PostalCode { get; set; } = "";
         public string? Gender { get; set; } = "";
-            public string? BirthPlace { get; set; } = "";
+        public string? BirthPlace { get; set; } = "";
         public string? Parent { get; set; } = "";
         public int? JMB { get; set; }
         public string? IDCardNumber { get; set; } = "";
         public string? HealthInsuranceNumber { get; set; } = "";
-         public string? HealthInsuranceAdditionalNumber { get; set; } = "";
+        public string? HealthInsuranceAdditionalNumber { get; set; } = "";
         public string? MarriageStatus { get; set; } = "";
         public string? Job { get; set; } = "";
 

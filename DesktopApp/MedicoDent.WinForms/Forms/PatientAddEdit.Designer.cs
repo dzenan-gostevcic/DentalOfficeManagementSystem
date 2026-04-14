@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             txtFirstName = new TextBox();
             txtLastName = new TextBox();
             txtPhone = new TextBox();
@@ -35,46 +36,48 @@
             chkBlackList = new CheckBox();
             btnSave = new Button();
             btnCancel = new Button();
-            textBox1 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            txtEmail = new TextBox();
             txtEmail1 = new TextBox();
-            txtSpol = new TextBox();
             chkMuško = new CheckBox();
             chkŽensko = new CheckBox();
-            textBox2 = new TextBox();
             dtpBirthDate = new DateTimePicker();
-            txtMjestoRodj = new TextBox();
             txtMjestoRođenja = new TextBox();
-            textBox6 = new TextBox();
             txtRodStar = new TextBox();
-            textBox3 = new TextBox();
             txtLicna = new TextBox();
-            textBox7 = new TextBox();
             txtJMBG = new TextBox();
-            textBox8 = new TextBox();
             txtBrojZdr = new TextBox();
-            textBox9 = new TextBox();
             txtBroDoOs = new TextBox();
             vScrollBar1 = new VScrollBar();
-            textBox10 = new TextBox();
             cmbBrak = new ComboBox();
             cmbZan = new ComboBox();
-            textBox11 = new TextBox();
-            textBox12 = new TextBox();
             txtUlica = new TextBox();
-            textBox13 = new TextBox();
-            textBox14 = new TextBox();
             txtZip = new TextBox();
             txtBroUl = new TextBox();
-            textBox15 = new TextBox();
             txtGrad = new TextBox();
+            errorProvider1 = new ErrorProvider(components);
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            label17 = new Label();
+            label1 = new Label();
+            label18 = new Label();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(201, 75);
+            txtFirstName.Location = new Point(201, 70);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(125, 27);
             txtFirstName.TabIndex = 0;
@@ -134,57 +137,12 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(3, 75);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 7;
-            textBox1.Text = "Ime";
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(3, 120);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 8;
-            textBox4.Text = "Prezime";
-            textBox4.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(3, 172);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 9;
-            textBox5.Text = "Telefon";
-            textBox5.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(3, 222);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(125, 27);
-            txtEmail.TabIndex = 10;
-            txtEmail.Text = "E-Mail";
-            txtEmail.TextAlign = HorizontalAlignment.Center;
-            // 
             // txtEmail1
             // 
             txtEmail1.Location = new Point(201, 222);
             txtEmail1.Name = "txtEmail1";
             txtEmail1.Size = new Size(125, 27);
             txtEmail1.TabIndex = 11;
-            // 
-            // txtSpol
-            // 
-            txtSpol.Location = new Point(3, 275);
-            txtSpol.Name = "txtSpol";
-            txtSpol.Size = new Size(125, 27);
-            txtSpol.TabIndex = 12;
-            txtSpol.Text = "Spol";
-            txtSpol.TextAlign = HorizontalAlignment.Center;
             // 
             // chkMuško
             // 
@@ -208,30 +166,12 @@
             chkŽensko.UseVisualStyleBackColor = true;
             chkŽensko.CheckedChanged += chkŽensko_CheckedChanged_1;
             // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(3, 328);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 15;
-            textBox2.Text = "Datum Rođenja";
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            // 
             // dtpBirthDate
             // 
             dtpBirthDate.Location = new Point(184, 326);
             dtpBirthDate.Name = "dtpBirthDate";
             dtpBirthDate.Size = new Size(251, 27);
             dtpBirthDate.TabIndex = 17;
-            // 
-            // txtMjestoRodj
-            // 
-            txtMjestoRodj.Location = new Point(3, 383);
-            txtMjestoRodj.Name = "txtMjestoRodj";
-            txtMjestoRodj.Size = new Size(125, 27);
-            txtMjestoRodj.TabIndex = 18;
-            txtMjestoRodj.Text = "Mjesto Rođenja";
-            txtMjestoRodj.TextAlign = HorizontalAlignment.Center;
             // 
             // txtMjestoRođenja
             // 
@@ -240,30 +180,12 @@
             txtMjestoRođenja.Size = new Size(125, 27);
             txtMjestoRođenja.TabIndex = 19;
             // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(3, 438);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(125, 27);
-            textBox6.TabIndex = 20;
-            textBox6.Text = "Roditelj/Staratelj";
-            textBox6.TextAlign = HorizontalAlignment.Center;
-            // 
             // txtRodStar
             // 
             txtRodStar.Location = new Point(201, 438);
             txtRodStar.Name = "txtRodStar";
             txtRodStar.Size = new Size(125, 27);
             txtRodStar.TabIndex = 21;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(3, 495);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 22;
-            textBox3.Text = "Broj Lične Karte";
-            textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // txtLicna
             // 
@@ -272,50 +194,24 @@
             txtLicna.Size = new Size(125, 27);
             txtLicna.TabIndex = 23;
             // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(3, 556);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(125, 27);
-            textBox7.TabIndex = 24;
-            textBox7.Text = "JMBG";
-            textBox7.TextAlign = HorizontalAlignment.Center;
-            // 
             // txtJMBG
             // 
             txtJMBG.Location = new Point(201, 556);
             txtJMBG.Name = "txtJMBG";
             txtJMBG.Size = new Size(125, 27);
             txtJMBG.TabIndex = 25;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(3, 619);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(255, 27);
-            textBox8.TabIndex = 26;
-            textBox8.Text = "Broj Zdravstvenog Osiguranja";
-            textBox8.TextAlign = HorizontalAlignment.Center;
+            txtJMBG.KeyPress += txtJMBG_KeyPress;
             // 
             // txtBrojZdr
             // 
-            txtBrojZdr.Location = new Point(310, 619);
+            txtBrojZdr.Location = new Point(235, 619);
             txtBrojZdr.Name = "txtBrojZdr";
             txtBrojZdr.Size = new Size(125, 27);
             txtBrojZdr.TabIndex = 27;
             // 
-            // textBox9
-            // 
-            textBox9.Location = new Point(3, 682);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(255, 27);
-            textBox9.TabIndex = 28;
-            textBox9.Text = "Broj Dopunskog Osiguranja";
-            textBox9.TextAlign = HorizontalAlignment.Center;
-            // 
             // txtBroDoOs
             // 
-            txtBroDoOs.Location = new Point(310, 682);
+            txtBroDoOs.Location = new Point(235, 679);
             txtBroDoOs.Name = "txtBroDoOs";
             txtBroDoOs.Size = new Size(125, 27);
             txtBroDoOs.TabIndex = 29;
@@ -327,19 +223,10 @@
             vScrollBar1.Size = new Size(26, 125);
             vScrollBar1.TabIndex = 30;
             // 
-            // textBox10
-            // 
-            textBox10.Location = new Point(454, 80);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(125, 27);
-            textBox10.TabIndex = 31;
-            textBox10.Text = "Bračno Stanje";
-            textBox10.TextAlign = HorizontalAlignment.Center;
-            // 
             // cmbBrak
             // 
             cmbBrak.FormattingEnabled = true;
-            cmbBrak.Location = new Point(615, 80);
+            cmbBrak.Location = new Point(615, 74);
             cmbBrak.Name = "cmbBrak";
             cmbBrak.Size = new Size(151, 28);
             cmbBrak.TabIndex = 32;
@@ -355,48 +242,12 @@
             cmbZan.TabIndex = 33;
             cmbZan.SelectedValueChanged += cmbZan_SelectedValueChanged;
             // 
-            // textBox11
-            // 
-            textBox11.Location = new Point(454, 134);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(125, 27);
-            textBox11.TabIndex = 34;
-            textBox11.Text = "Zanimanje";
-            textBox11.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox12
-            // 
-            textBox12.Location = new Point(3, 744);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(125, 27);
-            textBox12.TabIndex = 35;
-            textBox12.Text = "Ulica";
-            textBox12.TextAlign = HorizontalAlignment.Center;
-            // 
             // txtUlica
             // 
             txtUlica.Location = new Point(184, 744);
             txtUlica.Name = "txtUlica";
             txtUlica.Size = new Size(125, 27);
             txtUlica.TabIndex = 36;
-            // 
-            // textBox13
-            // 
-            textBox13.Location = new Point(3, 803);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(125, 27);
-            textBox13.TabIndex = 37;
-            textBox13.Text = "Broj Ulice";
-            textBox13.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox14
-            // 
-            textBox14.Location = new Point(3, 865);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(125, 27);
-            textBox14.TabIndex = 38;
-            textBox14.Text = "Poštanski Broj";
-            textBox14.TextAlign = HorizontalAlignment.Center;
             // 
             // txtZip
             // 
@@ -412,15 +263,6 @@
             txtBroUl.Size = new Size(125, 27);
             txtBroUl.TabIndex = 40;
             // 
-            // textBox15
-            // 
-            textBox15.Location = new Point(3, 923);
-            textBox15.Name = "textBox15";
-            textBox15.Size = new Size(125, 27);
-            textBox15.TabIndex = 41;
-            textBox15.Text = "Grad";
-            textBox15.TextAlign = HorizontalAlignment.Center;
-            // 
             // txtGrad
             // 
             txtGrad.Location = new Point(184, 923);
@@ -428,47 +270,215 @@
             txtGrad.Size = new Size(125, 27);
             txtGrad.TabIndex = 42;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.ControlLightLight;
+            label2.BorderStyle = BorderStyle.FixedSingle;
+            label2.Location = new Point(7, 70);
+            label2.Name = "label2";
+            label2.Size = new Size(46, 22);
+            label2.TabIndex = 44;
+            label2.Text = "Ime *";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 120);
+            label3.Name = "label3";
+            label3.Size = new Size(62, 20);
+            label3.TabIndex = 45;
+            label3.Text = "Prezime";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 172);
+            label4.Name = "label4";
+            label4.Size = new Size(58, 20);
+            label4.TabIndex = 46;
+            label4.Text = "Telefon";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 222);
+            label5.Name = "label5";
+            label5.Size = new Size(62, 20);
+            label5.TabIndex = 47;
+            label5.Text = "E-Mail *";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(3, 277);
+            label6.Name = "label6";
+            label6.Size = new Size(39, 20);
+            label6.TabIndex = 48;
+            label6.Text = "Spol";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 326);
+            label7.Name = "label7";
+            label7.Size = new Size(113, 20);
+            label7.TabIndex = 49;
+            label7.Text = "Datum Rođenja";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(-1, 383);
+            label8.Name = "label8";
+            label8.Size = new Size(113, 20);
+            label8.TabIndex = 50;
+            label8.Text = "Mjesto Rođenja";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(3, 438);
+            label9.Name = "label9";
+            label9.Size = new Size(122, 20);
+            label9.TabIndex = 51;
+            label9.Text = "Roditelj/Staratelj";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(7, 498);
+            label10.Name = "label10";
+            label10.Size = new Size(113, 20);
+            label10.TabIndex = 52;
+            label10.Text = "Broj Lične Karte";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(7, 556);
+            label11.Name = "label11";
+            label11.Size = new Size(56, 20);
+            label11.TabIndex = 53;
+            label11.Text = "JMBG *";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(7, 619);
+            label12.Name = "label12";
+            label12.Size = new Size(205, 20);
+            label12.TabIndex = 54;
+            label12.Text = "Broj Zdravstvenog Osiguranja";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(7, 682);
+            label13.Name = "label13";
+            label13.Size = new Size(191, 20);
+            label13.TabIndex = 55;
+            label13.Text = "Broj Dopunskog Osiguranja";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(7, 744);
+            label14.Name = "label14";
+            label14.Size = new Size(42, 20);
+            label14.TabIndex = 56;
+            label14.Text = "Ulica";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(7, 803);
+            label15.Name = "label15";
+            label15.Size = new Size(73, 20);
+            label15.TabIndex = 57;
+            label15.Text = "Broj Ulice";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(7, 865);
+            label16.Name = "label16";
+            label16.Size = new Size(100, 20);
+            label16.TabIndex = 58;
+            label16.Text = "Poštanski Broj";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(7, 923);
+            label17.Name = "label17";
+            label17.Size = new Size(41, 20);
+            label17.TabIndex = 59;
+            label17.Text = "Grad";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(454, 77);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 20);
+            label1.TabIndex = 60;
+            label1.Text = "Bračno Stanje";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(454, 133);
+            label18.Name = "label18";
+            label18.Size = new Size(79, 20);
+            label18.TabIndex = 61;
+            label18.Text = "Zanimanje";
+            // 
             // PatientAddEdit
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(800, 1055);
+            Controls.Add(label18);
+            Controls.Add(label1);
+            Controls.Add(label17);
+            Controls.Add(label16);
+            Controls.Add(label15);
+            Controls.Add(label14);
+            Controls.Add(label13);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(txtGrad);
-            Controls.Add(textBox15);
             Controls.Add(txtBroUl);
             Controls.Add(txtZip);
-            Controls.Add(textBox14);
-            Controls.Add(textBox13);
             Controls.Add(txtUlica);
-            Controls.Add(textBox12);
-            Controls.Add(textBox11);
             Controls.Add(cmbZan);
             Controls.Add(cmbBrak);
-            Controls.Add(textBox10);
             Controls.Add(vScrollBar1);
             Controls.Add(txtBroDoOs);
-            Controls.Add(textBox9);
             Controls.Add(txtBrojZdr);
-            Controls.Add(textBox8);
             Controls.Add(txtJMBG);
-            Controls.Add(textBox7);
             Controls.Add(txtLicna);
-            Controls.Add(textBox3);
             Controls.Add(txtRodStar);
-            Controls.Add(textBox6);
             Controls.Add(txtMjestoRođenja);
-            Controls.Add(txtMjestoRodj);
             Controls.Add(dtpBirthDate);
-            Controls.Add(textBox2);
             Controls.Add(chkŽensko);
             Controls.Add(chkMuško);
-            Controls.Add(txtSpol);
             Controls.Add(txtEmail1);
-            Controls.Add(txtEmail);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox1);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(chkBlackList);
@@ -479,6 +489,7 @@
             Name = "PatientAddEdit";
             Text = "PatientDetailForm";
             Load += PatientDetailForm_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -492,40 +503,41 @@
         private CheckBox chkBlackList;
         private Button btnSave;
         private Button btnCancel;
-        private TextBox textBox1;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox txtEmail;
         private TextBox txtEmail1;
-        private TextBox txtSpol;
         private CheckBox chkMuško;
         private CheckBox chkŽensko;
-        private TextBox textBox2;
         private DateTimePicker dtpBirthDate;
-        private TextBox txtMjestoRodj;
         private TextBox txtMjestoRođenja;
-        private TextBox textBox6;
         private TextBox txtRodStar;
-        private TextBox textBox3;
         private TextBox txtLicna;
-        private TextBox textBox7;
         private TextBox txtJMBG;
-        private TextBox textBox8;
         private TextBox txtBrojZdr;
-        private TextBox textBox9;
         private TextBox txtBroDoOs;
         private VScrollBar vScrollBar1;
-        private TextBox textBox10;
         private ComboBox cmbBrak;
         private ComboBox cmbZan;
-        private TextBox textBox11;
-        private TextBox textBox12;
         private TextBox txtUlica;
-        private TextBox textBox13;
-        private TextBox textBox14;
         private TextBox txtZip;
         private TextBox txtBroUl;
-        private TextBox textBox15;
         private TextBox txtGrad;
+        private ErrorProvider errorProvider1;
+        private Label label2;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label18;
+        private Label label1;
+        private Label label17;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label label13;
     }
 }

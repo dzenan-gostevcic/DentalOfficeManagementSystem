@@ -44,6 +44,7 @@
             ColFullName = new DataGridViewTextBoxColumn();
             LastName = new DataGridViewTextBoxColumn();
             ColPhone = new DataGridViewTextBoxColumn();
+            BirthDate = new DataGridViewTextBoxColumn();
             Blacklist = new DataGridViewCheckBoxColumn();
             Allergy = new DataGridViewCheckBoxColumn();
             CreatedDate = new DataGridViewTextBoxColumn();
@@ -92,13 +93,13 @@
             dgvPatients.AccessibleName = "dgvPatients";
             dgvPatients.BackgroundColor = SystemColors.Window;
             dgvPatients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, LastName, ColPhone, Blacklist, Allergy, CreatedDate, DateModified, Email });
+            dgvPatients.Columns.AddRange(new DataGridViewColumn[] { colID, ColFullName, LastName, ColPhone, BirthDate, Blacklist, Allergy, CreatedDate, DateModified, Email });
             dgvPatients.GridColor = SystemColors.Desktop;
-            dgvPatients.Location = new Point(24, 16);
+            dgvPatients.Location = new Point(12, 2);
             dgvPatients.Margin = new Padding(3, 4, 3, 4);
             dgvPatients.Name = "dgvPatients";
             dgvPatients.RowHeadersWidth = 51;
-            dgvPatients.Size = new Size(986, 369);
+            dgvPatients.Size = new Size(1164, 369);
             dgvPatients.TabIndex = 3;
             dgvPatients.CellContentClick += dataGridView1_CellContentClick;
             dgvPatients.CellDoubleClick += dataGridViewPatients_CellDoubleClick;
@@ -153,7 +154,7 @@
             cmbPages.AllowDrop = true;
             cmbPages.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPages.FormattingEnabled = true;
-            cmbPages.Location = new Point(555, 437);
+            cmbPages.Location = new Point(555, 446);
             cmbPages.Margin = new Padding(3, 4, 3, 4);
             cmbPages.MaxDropDownItems = 4;
             cmbPages.Name = "cmbPages";
@@ -163,7 +164,7 @@
             // 
             // txtPageNumber
             // 
-            txtPageNumber.Location = new Point(458, 439);
+            txtPageNumber.Location = new Point(459, 447);
             txtPageNumber.Margin = new Padding(3, 4, 3, 4);
             txtPageNumber.Name = "txtPageNumber";
             txtPageNumber.ReadOnly = true;
@@ -227,6 +228,15 @@
             ColPhone.Name = "ColPhone";
             ColPhone.Width = 120;
             // 
+            // BirthDate
+            // 
+            BirthDate.DataPropertyName = "BirthDate";
+            BirthDate.HeaderText = "Datum Rođenja";
+            BirthDate.MinimumWidth = 6;
+            BirthDate.Name = "BirthDate";
+            BirthDate.ReadOnly = true;
+            BirthDate.Width = 125;
+            // 
             // Blacklist
             // 
             Blacklist.DataPropertyName = "IsBlackListed=\"IsBlackListed\"";
@@ -271,7 +281,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1039, 600);
+            ClientSize = new Size(1173, 600);
             Controls.Add(bttnPrevious);
             Controls.Add(bttnNext);
             Controls.Add(txtPageNumber);
@@ -311,6 +321,7 @@
         private DataGridViewTextBoxColumn ColFullName;
         private DataGridViewTextBoxColumn LastName;
         private DataGridViewTextBoxColumn ColPhone;
+        private DataGridViewTextBoxColumn BirthDate;
         private DataGridViewCheckBoxColumn Blacklist;
         private DataGridViewCheckBoxColumn Allergy;
         private DataGridViewTextBoxColumn CreatedDate;

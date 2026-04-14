@@ -2,6 +2,7 @@
 using MedicoDent.Domain.Entities;
 using MedicoDent.Infrastructure.DependencyInjection;
 using MedicoDent.Infrastructure.Persistence;
+using MedicoDent.WinForms.DependencyInjection;
 using MedicoDent.WinForms.Forms;
 using MedicoDent.WinForms.Forms.Patients;
 using MedicoDent.WinForms.Main;
@@ -34,16 +35,15 @@ namespace MedicoDent.WinForms
                     services.AddServices();
                     services.AddRepositories(ctx.Configuration);
 
-                    services.AddTransient<LoginPage>();
-                    services.AddTransient<Patients>();
-                    services.AddTransient<PatientAddEdit>();
+                    services.AddFormFactory<LoginPage>();
+                    services.AddFormFactory<Patients>();
+                    services.AddFormFactory<int, PatientDetailForms>();
+                    services.AddFormFactory<PatientAddEdit>();
 
                     // create MainPage with runtime User
                     services.AddTransient<Func<User, MainPage>>(provider =>
-                        user =>
-                        {
-                            return ActivatorUtilities.CreateInstance<MainPage>(provider, user);
-                        });
+                        user => ActivatorUtilities.CreateInstance<MainPage>(provider, user));
+
                 })
                 .Build();
 

@@ -7,7 +7,6 @@ namespace MedicoDent.Domain.Entities
         [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
-        public string? Notes { get; set; }
         public ICollection<PatientAllergies>? PatientAllergies { get; set; }
     }
 }

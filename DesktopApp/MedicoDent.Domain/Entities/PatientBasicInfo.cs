@@ -19,7 +19,6 @@
         public string? SocialSecurityNumber { get; set; }
         public string? HealthInsuranceNumber { get; set; }
         public string? AdditionalHealthInsuranceNumber { get; set; }
-        public string? AdditionalNotes { get; set; }
-        public string? AlarmStatus { get; set; }
+        public string? Group { get; set; }
     }
 }

@@ -8,15 +8,25 @@ namespace MedicoDent.WinForms.Forms.Patients
         private readonly PatientService _patientService;
         private int _currentPage = 1;
         private int _totalPages = 1;
-        private const int PageSize = 5;
+        private  int PageSize = 10;
 
-        public Patients(PatientService patienteservice)
+
+        private readonly Func<int, PatientDetailForms> _patientDetailFactory;
+
+        public Patients(
+            PatientService patientService,
+            Func<int, PatientDetailForms> patientDetailFactory)
         {
             InitializeComponent();
-            this.ActiveControl = null;
-            _patientService = patienteservice;
+
+            _patientService = patientService;
+            _patientDetailFactory = patientDetailFactory;
+
             dgvPatients.AutoGenerateColumns = false;
             SetupCollumns();
+
+            cmbPages.Items.AddRange(new object[] { 10,25,50,100 });
+            cmbPages.SelectedItem = 10;
         }
 
         private void SetupCollumns()
@@ -72,8 +82,19 @@ namespace MedicoDent.WinForms.Forms.Patients
                 Name = "Email",
                 HeaderText = "Email",
                 DataPropertyName = "Email"
-            });
+            }
+            
+            );
+            dgvPatients.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" },
+                Name = "BirthDate",
+                HeaderText = "Datum Rođenja",
+                DataPropertyName = "BirthDate",
+                
 
+            }
+            );
         }
         private async Task LoadPage(int pageNumber)
         {
@@ -94,11 +115,7 @@ namespace MedicoDent.WinForms.Forms.Patients
 
             if (_totalPages == 0) _totalPages = 1;
 
-            cmbPages.Items.Clear();
-            for (int i = 1; i <= _totalPages; i++)
-            {
-                cmbPages.Items.Add(i);
-            }
+            
 
             cmbPages.SelectedItem = _currentPage;
 
@@ -208,7 +225,7 @@ namespace MedicoDent.WinForms.Forms.Patients
 
         private void btnAdd(object sender, EventArgs e)
         {
-            var form = new PatientAddEdit(_patientService); // We'll create this form next
+            var form = new PatientAddEdit(_patientService); 
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _currentPage = 1; // refresh to first page
@@ -222,7 +239,7 @@ namespace MedicoDent.WinForms.Forms.Patients
 
             var id = (int)dgvPatients.CurrentRow.Cells["Id"].Value;
             //var form = new PatientAddEdit(_patientService, id); // Edit mode
-            var form = new PatientDetailForms(_patientService, id);
+            var form = _patientDetailFactory(id);
 
 
             if (form.ShowDialog() == DialogResult.OK)
@@ -244,9 +261,14 @@ namespace MedicoDent.WinForms.Forms.Patients
             await LoadPatientsAsync();
         }
 
-        private void PageNumber_SelectedIndexChanged(object sender, EventArgs e)
+        private async void PageNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int totalPages = (int)Math.Ceiling((double)_totalPages / PageSize);
+           if (cmbPages.SelectedItem!=null)
+            {
+                PageSize = (int)cmbPages.SelectedItem;
+                _currentPage = 1;
+                await LoadPatientsAsync();
+            }
         }
 
         private async void dataGridViewPatients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -255,7 +277,7 @@ namespace MedicoDent.WinForms.Forms.Patients
                 .Rows[e.RowIndex]
                 .Cells["Id"].Value;
 
-            var form = new PatientDetailForms(_patientService, selectedId);
+            var form = _patientDetailFactory(selectedId);
             form.ShowDialog();
         }
     }

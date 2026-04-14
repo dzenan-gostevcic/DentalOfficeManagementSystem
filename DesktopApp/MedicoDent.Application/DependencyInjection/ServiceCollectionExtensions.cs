@@ -10,11 +10,12 @@ namespace MedicoDent.Application.DependencyInjection
         {
             // AutoMapper profiles
             services.AddAutoMapper(typeof(PacijentProfile));
+            services.AddAutoMapper(typeof(AllergieProfile));
 
             // Application services
             services.AddScoped<PatientService>();
             services.AddScoped<UserService>();
-            
+            services.AddScoped<AllergieService>();
 
             return services;
         }
